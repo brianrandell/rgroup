@@ -1,0 +1,102 @@
+﻿@using Newtonsoft.Json
+@model Rg.Web.ViewModels.InvitationsViewModel
+
+@{
+    ViewBag.Title = "View";
+}
+
+<h2 class="page-subtitle">Invitations</h2>
+
+<div class="row card invitations-invite">
+  <div class="col-sm-9">
+    <input type="text" id="inviteEmail" placeholder="Email address">
+  </div>
+  <div class="col-sm-3">
+  <button id="inviteButton" class="btn">Invite</button>
+  </div>
+</div>
+
+
+<div class="row card invitations-messages">
+
+  <p id="noInvitationsTitle" style="display:@((Model.OutstandingInvitations.Count == 0 && Model.AcceptedInvitations.Count == 0) ? "block" : "none")">You have not issued any invitations</p>
+
+  <p id="noOutstandingInvitationsTitle" style="display:@((Model.OutstandingInvitations.Count == 0 && Model.AcceptedInvitations.Count != 0) ? "block" : "none")">There are no invitations awaiting a response</p>
+
+  <p id="outstandingInvitationsTitle" style="display:@(Model.OutstandingInvitations.Count != 0 ? "block" : "none")">Invitations awaiting a response</p>
+
+  <p id="outstandingInvitations"></p>
+
+  <p id="acceptedInvitationsTitle" style="display:@(Model.AcceptedInvitations.Count != 0 ? "block" : "none")">Invitations already accepted</p>
+
+  <p id="acceptedInvitations"></p>
+
+ </div>
+
+  @section scripts {
+    <script type="text/x-tmpl" id="tmpl-outstanding">
+      {% for (var i=0; i < o.length; i++) { %}
+      <p><button class="btn cancel-invitation-btn" value="{%=o[i]%}">Cancel {%=o[i]%}</button> </p>
+      {% } %}
+    </script>
+    <script type="text/x-tmpl" id="tmpl-accepted">
+      {% for (var i=0; i < o.length; i++) { %}
+      <p>{%=o[i]%}</p>
+      {% } %}
+    </script>
+
+    <script type="text/javascript">
+      var initialOutstanding = @Html.Raw(JsonConvert.SerializeObject(Model.OutstandingInvitations));
+      var initialAccepted = @Html.Raw(JsonConvert.SerializeObject(Model.AcceptedInvitations));
+      var noInvitationsTitle = $('#noInvitationsTitle');
+      var noOutstandingInvitationsTitle = $('#noOutstandingInvitationsTitle');
+      var outstandingInvitationsTitle = $('#outstandingInvitationsTitle');
+      var acceptedInvitationsTitle = $('#acceptedInvitationsTitle');
+      function renderItems(outstanding, accepted) {
+        var noneOutstanding = outstanding.length == 0;
+        var noneAccepted = accepted.length == 0;
+        noInvitationsTitle.css('display', (noneOutstanding && noneAccepted) ? 'block' : 'none');
+        noOutstandingInvitationsTitle.css('display', (noneOutstanding && !noneAccepted) ? 'block' : 'none');
+        outstandingInvitationsTitle.css('display', noneOutstanding ? 'none' : 'block');
+        acceptedInvitationsTitle.css('display', noneAccepted ? 'none' : 'block');
+
+        var co = $("#outstandingInvitations");
+        co.html(tmpl("tmpl-outstanding", outstanding));
+        var ca = $("#acceptedInvitations");
+        ca.html(tmpl("tmpl-accepted", accepted));
+
+        co.find('.cancel-invitation-btn').click(function (e) {
+          var email = $(e.currentTarget).val();
+          var json = JSON.stringify({ "Email": email });
+          $.ajax
+          ({
+            type: "POST",
+            url: "api/invitations/delete",
+            contentType: 'application/json',
+            data: json,
+            success: function (data) {
+              renderItems(data.Outstanding, data.Accepted);
+            }
+          });
+        });
+      }
+
+      $(document).ready(function () {
+        renderItems(initialOutstanding, initialAccepted);
+        $('#inviteButton').click(function () {
+          var email = $('#inviteEmail').val();
+          var json = JSON.stringify({ "Email": email });
+          $.ajax
+          ({
+            type: "POST",
+            url: "api/invitations",
+            contentType: 'application/json',
+            data: json,
+            success: function (data) {
+              renderItems(data.Outstanding, data.Accepted);
+            }
+          });
+        });
+      });
+    </script>
+  }

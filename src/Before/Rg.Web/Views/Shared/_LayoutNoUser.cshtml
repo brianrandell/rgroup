@@ -1,0 +1,63 @@
+﻿@using Rg.Web.ViewModels
+@using Newtonsoft.Json
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Homebook</title>
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/Site.css" />
+    <script src="~/lib/modernizr/modernizr.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/emojione/1.5.0/assets/css/emojione.min.css" />
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top main-nav-bar">
+      <div class="container">
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+          </div>
+          <div class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                  <li>@Html.ActionLink("Home", "Index", "Home")</li>
+              </ul>
+              @Html.Partial("_LoginPartial")
+              <div class="navbar-search">
+                  <input type="text" id="searchTerm" class="navbar-search-input">
+                  <button id="searchButton" class="btn btn-search">Search</button>
+                  <div id="searchResults" class="navbar-search-results"></div>
+              </div>
+          </div>
+      </div>
+  </nav>
+
+
+<header class="row main-header">
+
+  <img src="~/Images/temp-avatar.jpg" alt="temp-avatar" class="avatar header-avatar">
+
+  <h1>@Html.ActionLink("User.Identity.Name", "Index", "Profile")</h1>
+
+  <a class="btn-icon btn-toggle-menu">Toggle menu</a>
+
+</header>
+
+<div class="hero-image" style="background-image: url('/Images/mask-top.svg'), url('/Images/mask-bottom.svg'), url('/Images/DefaultBanner.jpg');"></div>
+
+
+
+
+    <div class="container body-content">
+        @RenderBody()
+
+    </div>
+
+    <script src="~/Scripts/common.min.js"></script>
+    <script src="~/Content/design.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

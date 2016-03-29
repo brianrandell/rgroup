@@ -1,0 +1,155 @@
+﻿@using Rg.Web.ViewModels
+@using Newtonsoft.Json
+@model Rg.Web.ViewModels.ViewModelBase
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Homebook</title>
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/Site.css" />
+    <script src="~/Scripts/modernizr.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/emojione/1.5.0/assets/css/emojione.min.css" />
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top main-nav-bar">
+      <div class="container">
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+          </div>
+          <div class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                  <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                  <li>@Html.ActionLink("My photos", "Index", "Albums")</li>
+                  <li>@Html.ActionLink("Profile", "Index", "Profile")</li>
+                  @if ((Model is ViewModelBase) && ((ViewModelBase) Model).IsMasterUser)
+                  {
+                    <li>@Html.ActionLink("Invite users", "Index", "Invitations")</li>
+                  }
+              </ul>
+              @Html.Partial("_LoginPartial")
+              <div class="navbar-search">
+                  <input type="text" id="searchTerm" class="navbar-search-input">
+                  <button id="searchButton" class="btn btn-search">Search</button>
+                  <div id="searchResults" class="navbar-search-results"></div>
+              </div>
+          </div>
+      </div>
+  </nav>
+
+
+<header class="row main-header">
+
+  <img src="@Model.AvatarUrl" alt="temp-avatar" class="avatar header-avatar">
+
+  <h1>@Html.ActionLink(User.Identity.Name, "Index", "Profile")</h1>
+
+  <a class="btn-icon btn-toggle-menu">Toggle menu</a>
+
+</header>
+
+<div class="hero-image" style="background-image: url('/Images/mask-top.svg'), url('/Images/mask-bottom.svg'), url('@ViewBag.BannerUrl');"></div>
+
+
+
+
+    <div class="container body-content">
+        @RenderBody()
+
+    </div>
+
+    <script src="~/Scripts/common.min.js"></script>
+    <script src="//cdn.jsdelivr.net/emojione/1.5.0/lib/js/emojione.min.js"></script>
+    <script type="text/x-tmpl" id="tmpl-searchresult">
+        {% for (var i=0; i < o.length; i++) { %}
+        <div>
+            <a href="{%=o[i].Url%}">{%=o[i].Text%}</a>
+        </div>
+        {% } %}
+    </script>
+
+    <script type="text/x-tmpl" id="tmpl-comment">
+        <div class='timeline-comment'>
+
+            <a href='#' class='pull-right btn btn-icon btn-comment'>Add comment</a>
+            <a href='#' class='pull-right btn btn-icon btn-like'>Like this</a>
+
+            <img class='avatar' src='{%=o.AvatarUrl%}'>
+            <p><a href='/User/{%=o.UserId%}' class='profile-link'>{%=o.UserName%}</a> {%#emojify(o.Message)%}</p>
+
+            <div class='likeContainer'>
+                <div class='likes'></div>
+            </div>
+
+        </div>
+    </script>
+    <script type="text/x-tmpl" id="tmpl-addcomment">
+        <div class='timeline-comment-add'>
+
+            <img class="avatar" src="{%=o.avatar%}">
+
+            <input class="txtin-comment" type="text" placeholder="Add a comment&hellip;">
+
+            <input type="button" class="btn btn-preview" value="Preview">
+            <input type="button" class="btn btn-post" value="Post">
+
+        </div>
+    </script>
+    <script type="text/x-tmpl" id="tmpl-searchresult">
+    </script>
+    @if (Model is ViewModelWithTextEditingBase)
+    {
+        <script type="text/javascript">
+            var userCompletionList = @Html.Raw(JsonConvert.SerializeObject(((ViewModelWithTextEditingBase) Model).AllUsers));
+        </script>
+    }
+    <script type="text/javascript">
+        $('document').ready(function () {
+            $('#searchButton').click(function () {
+                var term = $('#searchTerm').val();
+                $.ajax
+                ({
+                    type: "GET",
+                    url: '/api/Search?term=' + term,
+                    contentType: 'application/json',
+                    success: function (data) {
+                        var c = $('#searchResults');
+                        var results = [];
+                        for (var i = 0; i < data.TimelineMatches.length; ++i)
+                        {
+                            var item = data.TimelineMatches[i];
+                            results.push({
+                                Url: "/Timeline/" + item.Id,
+                                Text: item.Text
+                            });
+                        }
+                        for (var i = 0; i < data.AlbumMatches.length; ++i)
+                        {
+                            var item = data.AlbumMatches[i];
+                            results.push({
+                                Url: "/Albums/" + item.Id,
+                                Text: item.Text
+                            });
+                        }
+                        for (var i = 0; i < data.MediaMatches.length; ++i) {
+                            var item = data.MediaMatches[i];
+                            results.push({
+                                Url: "/Media/" + item.Id,
+                                Text: item.Text
+                            });
+                        }
+                        c.html(tmpl("tmpl-searchresult", results));
+                    }
+                });
+            });
+        });
+        </script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

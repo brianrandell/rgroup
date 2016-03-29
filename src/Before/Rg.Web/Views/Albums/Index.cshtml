@@ -1,0 +1,181 @@
+﻿@model Rg.Web.ViewModels.AlbumsViewModel
+@using Newtonsoft.Json
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="page-subtitle">@Model.PosessiveInformalName photo albums</h2>
+
+@if (Model.AlbumOwnerId == null)
+{
+<div class="row card">
+
+    <div class="album-create-new">
+
+        <p>Create a new album</p>
+
+        <input id="titleText" placeholder="Name" type="text" class="album-create-new-title">
+
+        <textarea id="descriptionText" placeholder="Description" class="album-create-new-description"></textarea>
+
+        <div class="col-sm-12 update-preview-post">
+
+          <input type="button" class="btn" id="refresh" value="Refresh">
+
+          <input type="button" class="btn" value="Preview emoji" onclick="previewEmoji('descriptionText', 'outputText')">
+
+          <input type="button" class="btn" id="createAlbum" value="Create">
+
+        </div>
+
+
+      <div class="status-updater-info">
+
+          <p id="outputText" class="output-text"></p>
+
+          <p id="message"></p>
+
+      </div>
+
+    </div>
+
+</div>
+}
+
+    <div id="album-list"></div>
+
+@section scripts {
+
+<script type="text/x-tmpl" id="tmpl-album">
+    {% for (var i=0; i < o.length; i++) { %}
+
+
+  <article class="row card timeline-item">
+
+    <a href="/Albums/{%=o[i].Id%}">
+
+      <header class="timeline-item-header text-right">
+        <img src="@Model.AvatarUrl" alt="@Model.FullName" class="avatar" />
+        <h2>@Model.FullName <time datetime="{%=o[i].DateTime%}">{%=o[i].DateTime%}</time></h2>
+
+        <div class="likeContainer"></div>
+
+        <a href="#" class="btn btn-icon btn-like">Like this</a>
+        <a href="#" class="btn btn-icon btn-comment">Add comment</a>
+      </header>
+
+      <div class="timeline-item-content">
+
+        <div class="timeline-item-content-message">
+
+          {%
+          switch(o[i].SampleMediaUrls.length)
+          {
+          case 1:
+          %}
+          <div class="square-grid album-preview-1">
+            <img src="{%=o[i].SampleMediaUrls[0]%}" alt="" class="square-grid-item">
+          </div>
+          {%
+          break;
+          case 2:
+          %}
+          <div class="square-grid album-preview-2">
+            <img src="{%=o[i].SampleMediaUrls[0]%}" alt="" class="square-grid-item">
+            <img src="{%=o[i].SampleMediaUrls[1]%}" alt="" class="square-grid-item">
+          </div>
+          {%
+          break;
+          case 3:
+          %}
+          <div class="square-grid album-preview-3">
+            <img src="{%=o[i].SampleMediaUrls[0]%}" alt="" class="square-grid-item">
+            <img src="{%=o[i].SampleMediaUrls[1]%}" alt="" class="square-grid-item">
+            <img src="{%=o[i].SampleMediaUrls[2]%}" alt="" class="square-grid-item">
+          </div>
+          {%
+          break;
+          case 4:
+          %}
+          <div class="square-grid album-preview-4">
+            <img src="{%=o[i].SampleMediaUrls[0]%}" alt="" class="square-grid-item">
+            <img src="{%=o[i].SampleMediaUrls[1]%}" alt="" class="square-grid-item">
+            <img src="{%=o[i].SampleMediaUrls[2]%}" alt="" class="square-grid-item">
+            <img src="{%=o[i].SampleMediaUrls[3]%}" alt="" class="square-grid-item">
+          </div>
+          {%
+          break;
+          }
+          %}
+
+          <strong>{%=o[i].Title%}</strong> {%#emojify(o[i].Description)%}
+
+          <div class="timeline-item-content-meta">
+            <p>{%=o[i].LastModifiedText%}</p>
+          </div>
+
+          </div>
+</a>
+
+    </div>
+
+    <div class="commentContainer"></div>
+
+    </article>
+
+      {% } %}
+</script>
+
+<script type="text/javascript">
+    function renderAlbums(data) {
+        var c = $("#album-list");
+        c.html(tmpl("tmpl-album", data));
+        c.find(".likeContainer").each(function (i, likeContainer) {
+            makeLikeable("@Model.UserId", likeContainer, data[i], reloadAlbumList);
+        });
+        c.find(".commentContainer").each(function (i, commentContainer) {
+            makeCommentTarget("@Model.UserId", "@Model.AvatarUrl", commentContainer, data[i], reloadAlbumList);
+        });
+    }
+
+    var albumsUrl = "@(Model.AlbumOwnerId == null ? "/api/Albums" : ("/api/Users/" + Model.AlbumOwnerId + "/Albums"))";
+    function reloadAlbumList() {
+        $.ajax
+        ({
+            type: "GET",
+            url: albumsUrl
+        }).done(function (data) {
+            renderAlbums(data);
+        });
+    }
+
+
+    var initialAlbumList = @Html.Raw(JsonConvert.SerializeObject(Model.Albums));
+
+    $(document).ready(function () {
+        renderAlbums(initialAlbumList);
+
+        enableEditAutoCompletion($("#descriptionText"));
+
+        $('#createAlbum').click(function () {
+            var name = document.getElementById('titleText').value;
+            var description = document.getElementById('descriptionText').value;
+            var json = JSON.stringify({ "Title": name, "Description": description });
+            $.ajax
+            ({
+                type: "POST",
+                url: albumsUrl,
+                contentType: 'application/json',
+                data: json,
+                success: function () {
+                    reloadAlbumList();
+                }
+            });
+        });
+        $('#refresh').click(function () {
+            reloadAlbumList();
+        });
+    });
+</script>
+}

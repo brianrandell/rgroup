@@ -1,0 +1,18 @@
+{
+  "name": "ASP.NET",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "modernizr": "2.8.3",
+    "respond": "~1.4.2",
+    "jquery-validation-unobtrusive": "~3.2.3",
+
+    "jquery-textcomplete": "~0.8.0",
+    "blueimp-file-upload": "~9.11.2",
+    "blueimp-tmpl": "~2.5.5",
+    "blueimp-load-image": "~1.14.0",
+    "blueimp-canvas-to-blob": "~2.2.0",
+    "jquery-ui": "~1.11.4",
+    "jquery.iframe-transport": "~1.0.0"
+  }
+}

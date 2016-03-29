@@ -1,0 +1,186 @@
+﻿@using Newtonsoft.Json
+@model Rg.Web.ViewModels.ProfileViewModel
+@{
+    ViewBag.Title = "Profile";
+}
+
+
+<h2 class="page-subtitle">Profile</h2>
+
+
+<div class="row card">
+
+  <p><label>@Html.CheckBoxFor(m => m.Settings.EmailWhenMentioned, new { id = "enableMentionEmails" }) Email me when I'm mentioned</label></p>
+  <p><label>@Html.CheckBoxFor(m => m.Settings.NotifyWhenMentioned, new { id = "enableMentionNotifications" }) Send my devices notifications when I'm mentioned</label></p>
+</div>
+
+<div class="row card update-buttons">
+
+  <div id="avatarDropZone">
+
+    <span class="btn btn-file btn-add-photo" tabindex="2">
+      Avatar Image Upload
+      <!-- The file input field used as target for the file upload widget -->
+      <input id="avatarUpload" type="file" name="files[]" multiple>
+    </span>
+
+
+    <div id="avatarProgress" class="progress">
+      <div class="progress-bar" role="progressbar"></div>
+    </div>
+
+  </div>
+
+</div>
+
+
+<div class="row card file-dropzone">
+
+  <div class="files" id="files">
+  </div>
+
+</div>
+
+
+<div class="row card update-buttons">
+
+  <div id="bannerDropZone">
+
+    <span class="btn btn-file btn-add-photo" tabindex="2">
+    Banner Image Upload
+    <!-- The file input field used as target for the file upload widget -->
+    <input id="bannerUpload" type="file" name="files[]" multiple>
+    </span>
+
+    <div id="bannerProgress" class="progress">
+      <div class="progress-bar" role="progressbar"></div>
+    </div>
+
+  </div>
+
+</div>
+
+
+<div class="row card file-dropzone">
+
+  <div class="files" id="files">
+  </div>
+
+</div>
+
+@section scripts {
+
+    <script src="~/Scripts/upload.min.js"></script>
+
+    <script type="text/javascript">
+
+        $(function () {
+            'use strict';
+
+            var enableMentionEmails = $('#enableMentionEmails');
+            var enableMentionEmailsLabel = enableMentionEmails.parent('label');
+            enableMentionEmails.change(function () {
+                var enable = enableMentionEmails.is(":checked");
+                var json = JSON.stringify(enable);
+                enableMentionEmails.prop("disabled", true);
+                enableMentionEmailsLabel.addClass("disabled");
+                $.ajax({
+                    type: "POST",
+                    url: "api/Profile/EmailWhenMentioned",
+                    contentType: 'application/json',
+                    data: json,
+                    success: function () {
+                        enableMentionEmails.prop("disabled", false);
+                        enableMentionEmailsLabel.removeClass("disabled");
+                    },
+                    error: function() {
+                        enableMentionEmails.prop("disabled", false);
+                        enableMentionEmailsLabel.removeClass("disabled");
+                        enableMentionEmails.attr('checked', !enable);
+                    }
+                });
+            });
+
+            var enableMentionNotifications = $('#enableMentionNotifications');
+            var enableMentionNotificationsLabel = enableMentionNotifications.parent('label');
+            enableMentionNotifications.change(function () {
+                var enable = enableMentionNotifications.is(":checked");
+                var json = JSON.stringify(enable);
+                enableMentionNotifications.prop("disabled", true);
+                enableMentionNotificationsLabel.addClass("disabled");
+                $.ajax({
+                    type: "POST",
+                    url: "api/Profile/NotifyWhenMentioned",
+                    contentType: 'application/json',
+                    data: json,
+                    success: function () {
+                        enableMentionNotifications.prop("disabled", false);
+                        enableMentionNotificationsLabel.removeClass("disabled");
+                    },
+                    error: function () {
+                        enableMentionNotifications.prop("disabled", false);
+                        enableMentionNotificationsLabel.removeClass("disabled");
+                        enableMentionNotifications.attr('checked', !enable);
+                    }
+                });
+            });
+
+
+            makeImageUploadTarget(
+                $('#avatarUpload'),
+                $('#avatarDropZone'),
+                $('#avatarProgress'),
+                function (e, data) {
+                    // data.context seems to refer to the <div>    for this entry.
+                    //  (how does that square with the possibility of multiple file uploads?
+                    //   well as far as I can see it uploads one at a time even if you drag several)
+                    // data.files contains the files uploaded in this particular upload.
+                    // data.result contains the response from the server
+                    var useButton = $('<button class="btn">Set avatar</button>');
+                    useButton.appendTo(data.context);
+                    var id = data.result.Files[0].Id;
+                    useButton.click(function () {
+                        var json = JSON.stringify({ "MediaId": id });
+                        $.ajax({
+                            type: "POST",
+                            url: "api/Profile/SetAvatarImage",
+                            contentType: 'application/json',
+                            data: json,
+                            success: function () {
+                                data.context.remove();
+                            }
+                        });
+                    });
+                });
+
+
+            makeImageUploadTarget(
+                $('#bannerUpload'),
+                $('#bannerDropZone'),
+                $('#bannerProgress'),
+                function (e, data) {
+                    // data.context seems to refer to the <div>    for this entry.
+                    //  (how does that square with the possibility of multiple file uploads?
+                    //   well as far as I can see it uploads one at a time even if you drag several)
+                    // data.files contains the files uploaded in this particular upload.
+                    // data.result contains the response from the server
+                    var useButton = $('<button class="btn">Set banner</button>');
+                    useButton.appendTo(data.context);
+                    var id = data.result.Files[0].Id;
+                    useButton.click(function () {
+                        var json = JSON.stringify({ "MediaId": id });
+                        $.ajax({
+                            type: "POST",
+                            url: "api/Profile/SetBannerImage",
+                            contentType: 'application/json',
+                            data: json,
+                            success: function () {
+                                data.context.remove();
+                                location.reload();
+                            }
+                        });
+                    });
+                });
+        });
+    </script>
+}

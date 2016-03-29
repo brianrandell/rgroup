@@ -1,0 +1,1653 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CD4F78FA-1D14-43D5-865F-41B09F8D47B6}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Rg.Web</RootNamespace>
+    <AssemblyName>Rg.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.0.1\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Configuration, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.WindowsAzure.ConfigurationManager.3.1.0\lib\net40\Microsoft.WindowsAzure.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http.Owin, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.2.3\lib\net45\System.Web.Http.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="CheckStatusExtensions.cs" />
+    <Compile Include="Controllers\Api\AlbumsController.cs" />
+    <Compile Include="Controllers\Api\ApiControllerBase.cs" />
+    <Compile Include="Controllers\Api\CommentController.cs" />
+    <Compile Include="Controllers\Api\InvitationsController.cs" />
+    <Compile Include="Controllers\Api\MediaController.cs" />
+    <Compile Include="Controllers\Api\NotificationController.cs" />
+    <Compile Include="Controllers\Api\ProfileController.cs" />
+    <Compile Include="Controllers\Api\SearchController.cs" />
+    <Compile Include="Controllers\Api\TimelineController.cs" />
+    <Compile Include="Controllers\Api\UploadMediaController.cs" />
+    <Compile Include="Controllers\Api\UserImagesController.cs" />
+    <Compile Include="Controllers\Ui\AccountController.cs" />
+    <Compile Include="Controllers\Ui\AlbumsController.cs" />
+    <Compile Include="Controllers\Ui\HomeController.cs" />
+    <Compile Include="Controllers\Ui\InvitationsController.cs" />
+    <Compile Include="Controllers\Ui\ManageController.cs" />
+    <Compile Include="Controllers\Ui\MediaController.cs" />
+    <Compile Include="Controllers\Ui\ProfileController.cs" />
+    <Compile Include="Controllers\Ui\TimelineController.cs" />
+    <Compile Include="Controllers\Ui\UiControllerBase.cs" />
+    <Compile Include="Controllers\Ui\UserController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Identity\ApplicationSignInManager.cs" />
+    <Compile Include="Identity\ApplicationUser.cs" />
+    <Compile Include="Identity\ApplicationUserManager.cs" />
+    <Compile Include="Identity\CustomUserStore.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\AccountViewModels.cs" />
+    <Compile Include="ViewModels\AlbumsViewModel.cs" />
+    <Compile Include="ViewModels\AlbumViewModel.cs" />
+    <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="ViewModels\InvitationsViewModel.cs" />
+    <Compile Include="ViewModels\ManageViewModels.cs" />
+    <Compile Include="ViewModels\MediaViewModel.cs" />
+    <Compile Include="ViewModels\ProfileViewModel.cs" />
+    <Compile Include="ViewModels\TimelineItemViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="ViewModels\ViewModelWithTextEditingBase.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Images\DefaultAvatar.jpg" />
+    <Content Include="Images\DefaultAvatar.png" />
+    <Content Include="Images\DefaultBanner.jpg" />
+    <Content Include="Images\icon-burger.svg" />
+    <Content Include="Images\icon-comment.svg" />
+    <Content Include="Images\icon-emoji.svg" />
+    <Content Include="Images\icon-person.svg" />
+    <Content Include="Images\icon-photo.svg" />
+    <Content Include="Images\icon-video.svg" />
+    <Content Include="Images\icon-x.svg" />
+    <Content Include="Images\mask-bottom.svg" />
+    <Content Include="Images\mask-top.svg" />
+    <Content Include="Images\temp-avatar.jpg" />
+    <None Include="lib\modernizr\.bower.json" />
+    <None Include="lib\modernizr\.editorconfig" />
+    <None Include="lib\modernizr\.gitignore" />
+    <None Include="lib\modernizr\.travis.yml" />
+    <None Include="lib\modernizr\feature-detects\a-download.js" />
+    <None Include="lib\modernizr\feature-detects\audio-audiodata-api.js" />
+    <None Include="lib\modernizr\feature-detects\audio-webaudio-api.js" />
+    <None Include="lib\modernizr\feature-detects\battery-api.js" />
+    <None Include="lib\modernizr\feature-detects\battery-level.js" />
+    <None Include="lib\modernizr\feature-detects\blob-constructor.js" />
+    <None Include="lib\modernizr\feature-detects\canvas-todataurl-type.js" />
+    <None Include="lib\modernizr\feature-detects\contenteditable.js" />
+    <None Include="lib\modernizr\feature-detects\contentsecuritypolicy.js" />
+    <None Include="lib\modernizr\feature-detects\contextmenu.js" />
+    <None Include="lib\modernizr\feature-detects\cookies.js" />
+    <None Include="lib\modernizr\feature-detects\cors.js" />
+    <None Include="lib\modernizr\feature-detects\css-backgroundposition-shorthand.js" />
+    <None Include="lib\modernizr\feature-detects\css-backgroundposition-xy.js" />
+    <None Include="lib\modernizr\feature-detects\css-backgroundrepeat.js" />
+    <None Include="lib\modernizr\feature-detects\css-backgroundsizecover.js" />
+    <None Include="lib\modernizr\feature-detects\css-boxsizing.js" />
+    <None Include="lib\modernizr\feature-detects\css-calc.js" />
+    <None Include="lib\modernizr\feature-detects\css-cubicbezierrange.js" />
+    <None Include="lib\modernizr\feature-detects\css-displayrunin.js" />
+    <None Include="lib\modernizr\feature-detects\css-displaytable.js" />
+    <None Include="lib\modernizr\feature-detects\css-filters.js" />
+    <None Include="lib\modernizr\feature-detects\css-hyphens.js" />
+    <None Include="lib\modernizr\feature-detects\css-lastchild.js" />
+    <None Include="lib\modernizr\feature-detects\css-mask.js" />
+    <None Include="lib\modernizr\feature-detects\css-mediaqueries.js" />
+    <None Include="lib\modernizr\feature-detects\css-objectfit.js" />
+    <None Include="lib\modernizr\feature-detects\css-overflow-scrolling.js" />
+    <None Include="lib\modernizr\feature-detects\css-pointerevents.js" />
+    <None Include="lib\modernizr\feature-detects\css-positionsticky.js" />
+    <None Include="lib\modernizr\feature-detects\css-regions.js" />
+    <None Include="lib\modernizr\feature-detects\css-remunit.js" />
+    <None Include="lib\modernizr\feature-detects\css-resize.js" />
+    <None Include="lib\modernizr\feature-detects\css-scrollbars.js" />
+    <None Include="lib\modernizr\feature-detects\css-shapes.js" />
+    <None Include="lib\modernizr\feature-detects\css-subpixelfont.js" />
+    <None Include="lib\modernizr\feature-detects\css-supports.js" />
+    <None Include="lib\modernizr\feature-detects\css-userselect.js" />
+    <None Include="lib\modernizr\feature-detects\css-vhunit.js" />
+    <None Include="lib\modernizr\feature-detects\css-vmaxunit.js" />
+    <None Include="lib\modernizr\feature-detects\css-vminunit.js" />
+    <None Include="lib\modernizr\feature-detects\css-vwunit.js" />
+    <None Include="lib\modernizr\feature-detects\custom-protocol-handler.js" />
+    <None Include="lib\modernizr\feature-detects\dart.js" />
+    <None Include="lib\modernizr\feature-detects\dataview-api.js" />
+    <None Include="lib\modernizr\feature-detects\dom-classlist.js" />
+    <None Include="lib\modernizr\feature-detects\dom-createElement-attrs.js" />
+    <None Include="lib\modernizr\feature-detects\dom-dataset.js" />
+    <None Include="lib\modernizr\feature-detects\dom-microdata.js" />
+    <None Include="lib\modernizr\feature-detects\elem-datalist.js" />
+    <None Include="lib\modernizr\feature-detects\elem-details.js" />
+    <None Include="lib\modernizr\feature-detects\elem-output.js" />
+    <None Include="lib\modernizr\feature-detects\elem-progress-meter.js" />
+    <None Include="lib\modernizr\feature-detects\elem-ruby.js" />
+    <None Include="lib\modernizr\feature-detects\elem-time.js" />
+    <None Include="lib\modernizr\feature-detects\elem-track.js" />
+    <None Include="lib\modernizr\feature-detects\emoji.js" />
+    <None Include="lib\modernizr\feature-detects\es5-strictmode.js" />
+    <None Include="lib\modernizr\feature-detects\event-deviceorientation-motion.js" />
+    <None Include="lib\modernizr\feature-detects\exif-orientation.js" />
+    <None Include="lib\modernizr\feature-detects\file-api.js" />
+    <None Include="lib\modernizr\feature-detects\file-filesystem.js" />
+    <None Include="lib\modernizr\feature-detects\forms-fileinput.js" />
+    <None Include="lib\modernizr\feature-detects\forms-formattribute.js" />
+    <None Include="lib\modernizr\feature-detects\forms-inputnumber-l10n.js" />
+    <None Include="lib\modernizr\feature-detects\forms-placeholder.js" />
+    <None Include="lib\modernizr\feature-detects\forms-speechinput.js" />
+    <None Include="lib\modernizr\feature-detects\forms-validation.js" />
+    <None Include="lib\modernizr\feature-detects\fullscreen-api.js" />
+    <None Include="lib\modernizr\feature-detects\gamepad.js" />
+    <None Include="lib\modernizr\feature-detects\getusermedia.js" />
+    <None Include="lib\modernizr\feature-detects\ie8compat.js" />
+    <None Include="lib\modernizr\feature-detects\iframe-sandbox.js" />
+    <None Include="lib\modernizr\feature-detects\iframe-seamless.js" />
+    <None Include="lib\modernizr\feature-detects\iframe-srcdoc.js" />
+    <None Include="lib\modernizr\feature-detects\img-apng.js" />
+    <None Include="lib\modernizr\feature-detects\img-webp.js" />
+    <None Include="lib\modernizr\feature-detects\json.js" />
+    <None Include="lib\modernizr\feature-detects\lists-reversed.js" />
+    <None Include="lib\modernizr\feature-detects\mathml.js" />
+    <None Include="lib\modernizr\feature-detects\network-connection.js" />
+    <None Include="lib\modernizr\feature-detects\network-eventsource.js" />
+    <None Include="lib\modernizr\feature-detects\network-xhr2.js" />
+    <None Include="lib\modernizr\feature-detects\notification.js" />
+    <None Include="lib\modernizr\feature-detects\performance.js" />
+    <None Include="lib\modernizr\feature-detects\pointerlock-api.js" />
+    <None Include="lib\modernizr\feature-detects\quota-management-api.js" />
+    <None Include="lib\modernizr\feature-detects\requestanimationframe.js" />
+    <None Include="lib\modernizr\feature-detects\script-async.js" />
+    <None Include="lib\modernizr\feature-detects\script-defer.js" />
+    <None Include="lib\modernizr\feature-detects\style-scoped.js" />
+    <None Include="lib\modernizr\feature-detects\svg-filters.js" />
+    <None Include="lib\modernizr\feature-detects\unicode.js" />
+    <None Include="lib\modernizr\feature-detects\url-data-uri.js" />
+    <None Include="lib\modernizr\feature-detects\userdata.js" />
+    <None Include="lib\modernizr\feature-detects\vibration.js" />
+    <None Include="lib\modernizr\feature-detects\web-intents.js" />
+    <None Include="lib\modernizr\feature-detects\webgl-extensions.js" />
+    <None Include="lib\modernizr\feature-detects\websockets-binary.js" />
+    <None Include="lib\modernizr\feature-detects\window-framed.js" />
+    <None Include="lib\modernizr\feature-detects\workers-blobworkers.js" />
+    <None Include="lib\modernizr\feature-detects\workers-dataworkers.js" />
+    <None Include="lib\modernizr\feature-detects\workers-sharedworkers.js" />
+    <None Include="lib\modernizr\grunt.js" />
+    <None Include="lib\modernizr\media\Modernizr 2 Logo.ai" />
+    <None Include="lib\modernizr\media\Modernizr 2 Logo.eps" />
+    <None Include="lib\modernizr\media\Modernizr 2 Logo.pdf" />
+    <None Include="lib\modernizr\media\Modernizr 2 Logo.png" />
+    <None Include="lib\modernizr\media\Modernizr 2 Logo.svg" />
+    <None Include="lib\modernizr\modernizr.js" />
+    <None Include="lib\modernizr\readme.md" />
+    <None Include="lib\modernizr\test\basic.html" />
+    <None Include="lib\modernizr\test\caniuse.html" />
+    <None Include="lib\modernizr\test\caniuse_files\alpha.png" />
+    <None Include="lib\modernizr\test\caniuse_files\apng_test.png" />
+    <None Include="lib\modernizr\test\caniuse_files\before-after.png" />
+    <None Include="lib\modernizr\test\caniuse_files\form_validation.html" />
+    <None Include="lib\modernizr\test\caniuse_files\ga.js" />
+    <None Include="lib\modernizr\test\caniuse_files\green5x5.png" />
+    <None Include="lib\modernizr\test\caniuse_files\hashchange.html" />
+    <None Include="lib\modernizr\test\caniuse_files\jquery.min.js" />
+    <None Include="lib\modernizr\test\caniuse_files\mathml.html" />
+    <None Include="lib\modernizr\test\caniuse_files\mathml_ref.png" />
+    <None Include="lib\modernizr\test\caniuse_files\modernizr-1.7.min.js" />
+    <None Include="lib\modernizr\test\caniuse_files\png_alpha_result.png" />
+    <None Include="lib\modernizr\test\caniuse_files\pushstate.html" />
+    <None Include="lib\modernizr\test\caniuse_files\red30x30.png" />
+    <None Include="lib\modernizr\test\caniuse_files\ruby.png" />
+    <None Include="lib\modernizr\test\caniuse_files\stroked-text.png" />
+    <None Include="lib\modernizr\test\caniuse_files\style.css" />
+    <None Include="lib\modernizr\test\caniuse_files\svg-html-blur.png" />
+    <None Include="lib\modernizr\test\caniuse_files\svg-img.svg" />
+    <None Include="lib\modernizr\test\caniuse_files\svg-img.svg.1" />
+    <None Include="lib\modernizr\test\caniuse_files\svg_blur.png" />
+    <None Include="lib\modernizr\test\caniuse_files\table.png" />
+    <None Include="lib\modernizr\test\caniuse_files\text-shadow1.png" />
+    <None Include="lib\modernizr\test\caniuse_files\text-shadow2.png" />
+    <None Include="lib\modernizr\test\caniuse_files\Windsong-webfont.eot" />
+    <None Include="lib\modernizr\test\caniuse_files\Windsong-webfont.otf" />
+    <None Include="lib\modernizr\test\caniuse_files\Windsong-webfont.svg" />
+    <None Include="lib\modernizr\test\caniuse_files\Windsong-webfont.ttf" />
+    <None Include="lib\modernizr\test\caniuse_files\Windsong-webfont.woff" />
+    <None Include="lib\modernizr\test\caniuse_files\windsong_font.png" />
+    <None Include="lib\modernizr\test\caniuse_files\xhtml.html" />
+    <None Include="lib\modernizr\test\index.html" />
+    <None Include="lib\modernizr\test\js\basic.html" />
+    <None Include="lib\modernizr\test\js\dumpdata.js" />
+    <None Include="lib\modernizr\test\js\lib\detect-global.js" />
+    <None Include="lib\modernizr\test\js\lib\jquery-1.7b2.js" />
+    <None Include="lib\modernizr\test\js\lib\jsonselect.js" />
+    <None Include="lib\modernizr\test\js\lib\polyfills.js" />
+    <None Include="lib\modernizr\test\js\lib\uaparser.js" />
+    <None Include="lib\modernizr\test\js\setup.js" />
+    <None Include="lib\modernizr\test\js\unit-caniuse.js" />
+    <None Include="lib\modernizr\test\js\unit.js" />
+    <None Include="lib\modernizr\test\qunit\qunit.css" />
+    <None Include="lib\modernizr\test\qunit\qunit.js" />
+    <None Include="lib\modernizr\test\qunit\run-qunit.js" />
+    <Content Include="Scripts\comments.js" />
+    <Content Include="Scripts\design.js" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="lib\blueimp-canvas-to-blob\js\canvas-to-blob.js" />
+    <None Include="lib\blueimp-canvas-to-blob\js\canvas-to-blob.min.js" />
+    <None Include="lib\blueimp-file-upload\css\jquery.fileupload-noscript.css" />
+    <None Include="lib\blueimp-file-upload\css\jquery.fileupload-ui-noscript.css" />
+    <None Include="lib\blueimp-file-upload\css\jquery.fileupload-ui.css" />
+    <None Include="lib\blueimp-file-upload\css\jquery.fileupload.css" />
+    <None Include="lib\blueimp-file-upload\img\loading.gif" />
+    <None Include="lib\blueimp-file-upload\img\progressbar.gif" />
+    <None Include="lib\blueimp-file-upload\js\cors\jquery.postmessage-transport.js" />
+    <None Include="lib\blueimp-file-upload\js\cors\jquery.xdr-transport.js" />
+    <None Include="lib\blueimp-file-upload\js\jquery.fileupload-angular.js" />
+    <None Include="lib\blueimp-file-upload\js\jquery.fileupload-audio.js" />
+    <None Include="lib\blueimp-file-upload\js\jquery.fileupload-image.js" />
+    <None Include="lib\blueimp-file-upload\js\jquery.fileupload-jquery-ui.js" />
+    <None Include="lib\blueimp-file-upload\js\jquery.fileupload-process.js" />
+    <None Include="lib\blueimp-file-upload\js\jquery.fileupload-ui.js" />
+    <None Include="lib\blueimp-file-upload\js\jquery.fileupload-validate.js" />
+    <None Include="lib\blueimp-file-upload\js\jquery.fileupload-video.js" />
+    <None Include="lib\blueimp-file-upload\js\jquery.fileupload.js" />
+    <None Include="lib\blueimp-file-upload\js\jquery.iframe-transport.js" />
+    <None Include="lib\blueimp-file-upload\js\vendor\jquery.ui.widget.js" />
+    <None Include="lib\blueimp-load-image\js\load-image-exif-map.js" />
+    <None Include="lib\blueimp-load-image\js\load-image-exif.js" />
+    <None Include="lib\blueimp-load-image\js\load-image-ios.js" />
+    <None Include="lib\blueimp-load-image\js\load-image-meta.js" />
+    <None Include="lib\blueimp-load-image\js\load-image-orientation.js" />
+    <None Include="lib\blueimp-load-image\js\load-image.all.min.js" />
+    <None Include="lib\blueimp-load-image\js\load-image.js" />
+    <None Include="lib\blueimp-tmpl\js\compile.js" />
+    <None Include="lib\blueimp-tmpl\js\runtime.js" />
+    <None Include="lib\blueimp-tmpl\js\tmpl.js" />
+    <None Include="lib\blueimp-tmpl\js\tmpl.min.js" />
+    <None Include="lib\bootstrap\dist\css\bootstrap-theme.css" />
+    <None Include="lib\bootstrap\dist\css\bootstrap-theme.min.css" />
+    <None Include="lib\bootstrap\dist\css\bootstrap.css" />
+    <None Include="lib\bootstrap\dist\css\bootstrap.min.css" />
+    <None Include="lib\bootstrap\dist\fonts\glyphicons-halflings-regular.svg" />
+    <None Include="lib\bootstrap\dist\js\bootstrap.js" />
+    <None Include="lib\bootstrap\dist\js\bootstrap.min.js" />
+    <None Include="lib\bootstrap\dist\js\npm.js" />
+    <None Include="lib\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <None Include="lib\bootstrap\Gruntfile.js" />
+    <None Include="lib\bootstrap\grunt\bs-commonjs-generator.js" />
+    <None Include="lib\bootstrap\grunt\bs-glyphicons-data-generator.js" />
+    <None Include="lib\bootstrap\grunt\bs-lessdoc-parser.js" />
+    <None Include="lib\bootstrap\grunt\bs-raw-files-generator.js" />
+    <None Include="lib\bootstrap\js\affix.js" />
+    <None Include="lib\bootstrap\js\alert.js" />
+    <None Include="lib\bootstrap\js\button.js" />
+    <None Include="lib\bootstrap\js\carousel.js" />
+    <None Include="lib\bootstrap\js\collapse.js" />
+    <None Include="lib\bootstrap\js\dropdown.js" />
+    <None Include="lib\bootstrap\js\modal.js" />
+    <None Include="lib\bootstrap\js\popover.js" />
+    <None Include="lib\bootstrap\js\scrollspy.js" />
+    <None Include="lib\bootstrap\js\tab.js" />
+    <None Include="lib\bootstrap\js\tooltip.js" />
+    <None Include="lib\bootstrap\js\transition.js" />
+    <None Include="lib\bootstrap\package.js" />
+    <None Include="lib\jquery-textcomplete\dist\jquery.textcomplete.css" />
+    <None Include="lib\jquery-textcomplete\dist\jquery.textcomplete.js" />
+    <None Include="lib\jquery-textcomplete\dist\jquery.textcomplete.min.js" />
+    <None Include="lib\jquery-textcomplete\Gruntfile.js" />
+    <None Include="lib\jquery-textcomplete\src\adapter.js" />
+    <None Include="lib\jquery-textcomplete\src\completer.js" />
+    <None Include="lib\jquery-textcomplete\src\content_editable.js" />
+    <None Include="lib\jquery-textcomplete\src\dropdown.js" />
+    <None Include="lib\jquery-textcomplete\src\ie_textarea.js" />
+    <None Include="lib\jquery-textcomplete\src\main.js" />
+    <None Include="lib\jquery-textcomplete\src\strategy.js" />
+    <None Include="lib\jquery-textcomplete\src\textarea.js" />
+    <None Include="lib\jquery-ui\AUTHORS.txt" />
+    <None Include="lib\jquery-ui\jquery-ui.js" />
+    <None Include="lib\jquery-ui\jquery-ui.min.js" />
+    <None Include="lib\jquery-ui\LICENSE.txt" />
+    <None Include="lib\jquery-ui\themes\base\accordion.css" />
+    <None Include="lib\jquery-ui\themes\base\all.css" />
+    <None Include="lib\jquery-ui\themes\base\autocomplete.css" />
+    <None Include="lib\jquery-ui\themes\base\base.css" />
+    <None Include="lib\jquery-ui\themes\base\button.css" />
+    <None Include="lib\jquery-ui\themes\base\core.css" />
+    <None Include="lib\jquery-ui\themes\base\datepicker.css" />
+    <None Include="lib\jquery-ui\themes\base\dialog.css" />
+    <None Include="lib\jquery-ui\themes\base\draggable.css" />
+    <None Include="lib\jquery-ui\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <None Include="lib\jquery-ui\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <None Include="lib\jquery-ui\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <None Include="lib\jquery-ui\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <None Include="lib\jquery-ui\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <None Include="lib\jquery-ui\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <None Include="lib\jquery-ui\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <None Include="lib\jquery-ui\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <None Include="lib\jquery-ui\themes\base\images\ui-icons_222222_256x240.png" />
+    <None Include="lib\jquery-ui\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <None Include="lib\jquery-ui\themes\base\images\ui-icons_444444_256x240.png" />
+    <None Include="lib\jquery-ui\themes\base\images\ui-icons_454545_256x240.png" />
+    <None Include="lib\jquery-ui\themes\base\images\ui-icons_555555_256x240.png" />
+    <None Include="lib\jquery-ui\themes\base\images\ui-icons_777620_256x240.png" />
+    <None Include="lib\jquery-ui\themes\base\images\ui-icons_777777_256x240.png" />
+    <None Include="lib\jquery-ui\themes\base\images\ui-icons_888888_256x240.png" />
+    <None Include="lib\jquery-ui\themes\base\images\ui-icons_cc0000_256x240.png" />
+    <None Include="lib\jquery-ui\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <None Include="lib\jquery-ui\themes\base\images\ui-icons_ffffff_256x240.png" />
+    <None Include="lib\jquery-ui\themes\base\jquery-ui.css" />
+    <None Include="lib\jquery-ui\themes\base\jquery-ui.min.css" />
+    <None Include="lib\jquery-ui\themes\base\menu.css" />
+    <None Include="lib\jquery-ui\themes\base\progressbar.css" />
+    <None Include="lib\jquery-ui\themes\base\resizable.css" />
+    <None Include="lib\jquery-ui\themes\base\selectable.css" />
+    <None Include="lib\jquery-ui\themes\base\selectmenu.css" />
+    <None Include="lib\jquery-ui\themes\base\slider.css" />
+    <None Include="lib\jquery-ui\themes\base\sortable.css" />
+    <None Include="lib\jquery-ui\themes\base\spinner.css" />
+    <None Include="lib\jquery-ui\themes\base\tabs.css" />
+    <None Include="lib\jquery-ui\themes\base\theme.css" />
+    <None Include="lib\jquery-ui\themes\base\tooltip.css" />
+    <None Include="lib\jquery-ui\themes\black-tie\images\animated-overlay.gif" />
+    <None Include="lib\jquery-ui\themes\black-tie\images\ui-bg_diagonals-thick_8_333333_40x40.png" />
+    <None Include="lib\jquery-ui\themes\black-tie\images\ui-bg_flat_65_ffffff_40x100.png" />
+    <None Include="lib\jquery-ui\themes\black-tie\images\ui-bg_glass_40_111111_1x400.png" />
+    <None Include="lib\jquery-ui\themes\black-tie\images\ui-bg_glass_55_1c1c1c_1x400.png" />
+    <None Include="lib\jquery-ui\themes\black-tie\images\ui-bg_highlight-hard_100_f9f9f9_1x100.png" />
+    <None Include="lib\jquery-ui\themes\black-tie\images\ui-bg_highlight-hard_40_aaaaaa_1x100.png" />
+    <None Include="lib\jquery-ui\themes\black-tie\images\ui-bg_highlight-soft_50_aaaaaa_1x100.png" />
+    <None Include="lib\jquery-ui\themes\black-tie\images\ui-bg_inset-hard_45_cd0a0a_1x100.png" />
+    <None Include="lib\jquery-ui\themes\black-tie\images\ui-bg_inset-hard_55_ffeb80_1x100.png" />
+    <None Include="lib\jquery-ui\themes\black-tie\images\ui-icons_222222_256x240.png" />
+    <None Include="lib\jquery-ui\themes\black-tie\images\ui-icons_4ca300_256x240.png" />
+    <None Include="lib\jquery-ui\themes\black-tie\images\ui-icons_bbbbbb_256x240.png" />
+    <None Include="lib\jquery-ui\themes\black-tie\images\ui-icons_ededed_256x240.png" />
+    <None Include="lib\jquery-ui\themes\black-tie\images\ui-icons_ffcf29_256x240.png" />
+    <None Include="lib\jquery-ui\themes\black-tie\images\ui-icons_ffffff_256x240.png" />
+    <None Include="lib\jquery-ui\themes\black-tie\jquery-ui.css" />
+    <None Include="lib\jquery-ui\themes\black-tie\jquery-ui.min.css" />
+    <None Include="lib\jquery-ui\themes\black-tie\theme.css" />
+    <None Include="lib\jquery-ui\themes\blitzer\images\animated-overlay.gif" />
+    <None Include="lib\jquery-ui\themes\blitzer\images\ui-bg_diagonals-thick_75_f3d8d8_40x40.png" />
+    <None Include="lib\jquery-ui\themes\blitzer\images\ui-bg_dots-small_65_a6a6a6_2x2.png" />
+    <None Include="lib\jquery-ui\themes\blitzer\images\ui-bg_flat_0_333333_40x100.png" />
+    <None Include="lib\jquery-ui\themes\blitzer\images\ui-bg_flat_65_ffffff_40x100.png" />
+    <None Include="lib\jquery-ui\themes\blitzer\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <None Include="lib\jquery-ui\themes\blitzer\images\ui-bg_glass_55_fbf8ee_1x400.png" />
+    <None Include="lib\jquery-ui\themes\blitzer\images\ui-bg_highlight-hard_100_eeeeee_1x100.png" />
+    <None Include="lib\jquery-ui\themes\blitzer\images\ui-bg_highlight-hard_100_f6f6f6_1x100.png" />
+    <None Include="lib\jquery-ui\themes\blitzer\images\ui-bg_highlight-soft_15_cc0000_1x100.png" />
+    <None Include="lib\jquery-ui\themes\blitzer\images\ui-icons_004276_256x240.png" />
+    <None Include="lib\jquery-ui\themes\blitzer\images\ui-icons_cc0000_256x240.png" />
+    <None Include="lib\jquery-ui\themes\blitzer\images\ui-icons_ffffff_256x240.png" />
+    <None Include="lib\jquery-ui\themes\blitzer\jquery-ui.css" />
+    <None Include="lib\jquery-ui\themes\blitzer\jquery-ui.min.css" />
+    <None Include="lib\jquery-ui\themes\blitzer\theme.css" />
+    <None Include="lib\jquery-ui\themes\cupertino\images\animated-overlay.gif" />
+    <None Include="lib\jquery-ui\themes\cupertino\images\ui-bg_diagonals-thick_90_eeeeee_40x40.png" />
+    <None Include="lib\jquery-ui\themes\cupertino\images\ui-bg_flat_15_cd0a0a_40x100.png" />
+    <None Include="lib\jquery-ui\themes\cupertino\images\ui-bg_glass_100_e4f1fb_1x400.png" />
+    <None Include="lib\jquery-ui\themes\cupertino\images\ui-bg_glass_50_3baae3_1x400.png" />
+    <None Include="lib\jquery-ui\themes\cupertino\images\ui-bg_glass_80_d7ebf9_1x400.png" />
+    <None Include="lib\jquery-ui\themes\cupertino\images\ui-bg_highlight-hard_100_f2f5f7_1x100.png" />
+    <None Include="lib\jquery-ui\themes\cupertino\images\ui-bg_highlight-hard_70_000000_1x100.png" />
+    <None Include="lib\jquery-ui\themes\cupertino\images\ui-bg_highlight-soft_100_deedf7_1x100.png" />
+    <None Include="lib\jquery-ui\themes\cupertino\images\ui-bg_highlight-soft_25_ffef8f_1x100.png" />
+    <None Include="lib\jquery-ui\themes\cupertino\images\ui-icons_2694e8_256x240.png" />
+    <None Include="lib\jquery-ui\themes\cupertino\images\ui-icons_2e83ff_256x240.png" />
+    <None Include="lib\jquery-ui\themes\cupertino\images\ui-icons_3d80b3_256x240.png" />
+    <None Include="lib\jquery-ui\themes\cupertino\images\ui-icons_72a7cf_256x240.png" />
+    <None Include="lib\jquery-ui\themes\cupertino\images\ui-icons_ffffff_256x240.png" />
+    <None Include="lib\jquery-ui\themes\cupertino\jquery-ui.css" />
+    <None Include="lib\jquery-ui\themes\cupertino\jquery-ui.min.css" />
+    <None Include="lib\jquery-ui\themes\cupertino\theme.css" />
+    <None Include="lib\jquery-ui\themes\dark-hive\images\animated-overlay.gif" />
+    <None Include="lib\jquery-ui\themes\dark-hive\images\ui-bg_flat_30_cccccc_40x100.png" />
+    <None Include="lib\jquery-ui\themes\dark-hive\images\ui-bg_flat_50_5c5c5c_40x100.png" />
+    <None Include="lib\jquery-ui\themes\dark-hive\images\ui-bg_glass_40_ffc73d_1x400.png" />
+    <None Include="lib\jquery-ui\themes\dark-hive\images\ui-bg_highlight-hard_20_0972a5_1x100.png" />
+    <None Include="lib\jquery-ui\themes\dark-hive\images\ui-bg_highlight-soft_33_003147_1x100.png" />
+    <None Include="lib\jquery-ui\themes\dark-hive\images\ui-bg_highlight-soft_35_222222_1x100.png" />
+    <None Include="lib\jquery-ui\themes\dark-hive\images\ui-bg_highlight-soft_44_444444_1x100.png" />
+    <None Include="lib\jquery-ui\themes\dark-hive\images\ui-bg_highlight-soft_80_eeeeee_1x100.png" />
+    <None Include="lib\jquery-ui\themes\dark-hive\images\ui-bg_loop_25_000000_21x21.png" />
+    <None Include="lib\jquery-ui\themes\dark-hive\images\ui-icons_222222_256x240.png" />
+    <None Include="lib\jquery-ui\themes\dark-hive\images\ui-icons_4b8e0b_256x240.png" />
+    <None Include="lib\jquery-ui\themes\dark-hive\images\ui-icons_a83300_256x240.png" />
+    <None Include="lib\jquery-ui\themes\dark-hive\images\ui-icons_cccccc_256x240.png" />
+    <None Include="lib\jquery-ui\themes\dark-hive\images\ui-icons_ffffff_256x240.png" />
+    <None Include="lib\jquery-ui\themes\dark-hive\jquery-ui.css" />
+    <None Include="lib\jquery-ui\themes\dark-hive\jquery-ui.min.css" />
+    <None Include="lib\jquery-ui\themes\dark-hive\theme.css" />
+    <None Include="lib\jquery-ui\themes\dot-luv\images\animated-overlay.gif" />
+    <None Include="lib\jquery-ui\themes\dot-luv\images\ui-bg_diagonals-thick_15_0b3e6f_40x40.png" />
+    <None Include="lib\jquery-ui\themes\dot-luv\images\ui-bg_dots-medium_30_0b58a2_4x4.png" />
+    <None Include="lib\jquery-ui\themes\dot-luv\images\ui-bg_dots-small_20_333333_2x2.png" />
+    <None Include="lib\jquery-ui\themes\dot-luv\images\ui-bg_dots-small_30_a32d00_2x2.png" />
+    <None Include="lib\jquery-ui\themes\dot-luv\images\ui-bg_dots-small_40_00498f_2x2.png" />
+    <None Include="lib\jquery-ui\themes\dot-luv\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <None Include="lib\jquery-ui\themes\dot-luv\images\ui-bg_flat_40_292929_40x100.png" />
+    <None Include="lib\jquery-ui\themes\dot-luv\images\ui-bg_gloss-wave_20_111111_500x100.png" />
+    <None Include="lib\jquery-ui\themes\dot-luv\images\ui-icons_00498f_256x240.png" />
+    <None Include="lib\jquery-ui\themes\dot-luv\images\ui-icons_98d2fb_256x240.png" />
+    <None Include="lib\jquery-ui\themes\dot-luv\images\ui-icons_9ccdfc_256x240.png" />
+    <None Include="lib\jquery-ui\themes\dot-luv\images\ui-icons_ffffff_256x240.png" />
+    <None Include="lib\jquery-ui\themes\dot-luv\jquery-ui.css" />
+    <None Include="lib\jquery-ui\themes\dot-luv\jquery-ui.min.css" />
+    <None Include="lib\jquery-ui\themes\dot-luv\theme.css" />
+    <None Include="lib\jquery-ui\themes\eggplant\images\animated-overlay.gif" />
+    <None Include="lib\jquery-ui\themes\eggplant\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <None Include="lib\jquery-ui\themes\eggplant\images\ui-bg_flat_0_eeeeee_40x100.png" />
+    <None Include="lib\jquery-ui\themes\eggplant\images\ui-bg_flat_55_994d53_40x100.png" />
+    <None Include="lib\jquery-ui\themes\eggplant\images\ui-bg_flat_55_fafafa_40x100.png" />
+    <None Include="lib\jquery-ui\themes\eggplant\images\ui-bg_gloss-wave_30_3d3644_500x100.png" />
+    <None Include="lib\jquery-ui\themes\eggplant\images\ui-bg_highlight-soft_100_dcd9de_1x100.png" />
+    <None Include="lib\jquery-ui\themes\eggplant\images\ui-bg_highlight-soft_100_eae6ea_1x100.png" />
+    <None Include="lib\jquery-ui\themes\eggplant\images\ui-bg_highlight-soft_25_30273a_1x100.png" />
+    <None Include="lib\jquery-ui\themes\eggplant\images\ui-bg_highlight-soft_45_5f5964_1x100.png" />
+    <None Include="lib\jquery-ui\themes\eggplant\images\ui-icons_454545_256x240.png" />
+    <None Include="lib\jquery-ui\themes\eggplant\images\ui-icons_734d99_256x240.png" />
+    <None Include="lib\jquery-ui\themes\eggplant\images\ui-icons_8d78a5_256x240.png" />
+    <None Include="lib\jquery-ui\themes\eggplant\images\ui-icons_a8a3ae_256x240.png" />
+    <None Include="lib\jquery-ui\themes\eggplant\images\ui-icons_ebccce_256x240.png" />
+    <None Include="lib\jquery-ui\themes\eggplant\images\ui-icons_ffffff_256x240.png" />
+    <None Include="lib\jquery-ui\themes\eggplant\jquery-ui.css" />
+    <None Include="lib\jquery-ui\themes\eggplant\jquery-ui.min.css" />
+    <None Include="lib\jquery-ui\themes\eggplant\theme.css" />
+    <None Include="lib\jquery-ui\themes\excite-bike\images\animated-overlay.gif" />
+    <None Include="lib\jquery-ui\themes\excite-bike\images\ui-bg_diagonals-small_25_c5ddfc_40x40.png" />
+    <None Include="lib\jquery-ui\themes\excite-bike\images\ui-bg_diagonals-thick_20_e69700_40x40.png" />
+    <None Include="lib\jquery-ui\themes\excite-bike\images\ui-bg_diagonals-thick_22_1484e6_40x40.png" />
+    <None Include="lib\jquery-ui\themes\excite-bike\images\ui-bg_diagonals-thick_26_2293f7_40x40.png" />
+    <None Include="lib\jquery-ui\themes\excite-bike\images\ui-bg_flat_0_e69700_40x100.png" />
+    <None Include="lib\jquery-ui\themes\excite-bike\images\ui-bg_flat_0_e6b900_40x100.png" />
+    <None Include="lib\jquery-ui\themes\excite-bike\images\ui-bg_highlight-soft_100_f9f9f9_1x100.png" />
+    <None Include="lib\jquery-ui\themes\excite-bike\images\ui-bg_inset-hard_100_eeeeee_1x100.png" />
+    <None Include="lib\jquery-ui\themes\excite-bike\images\ui-icons_0a82eb_256x240.png" />
+    <None Include="lib\jquery-ui\themes\excite-bike\images\ui-icons_0b54d5_256x240.png" />
+    <None Include="lib\jquery-ui\themes\excite-bike\images\ui-icons_5fa5e3_256x240.png" />
+    <None Include="lib\jquery-ui\themes\excite-bike\images\ui-icons_fcdd4a_256x240.png" />
+    <None Include="lib\jquery-ui\themes\excite-bike\images\ui-icons_ffffff_256x240.png" />
+    <None Include="lib\jquery-ui\themes\excite-bike\jquery-ui.css" />
+    <None Include="lib\jquery-ui\themes\excite-bike\jquery-ui.min.css" />
+    <None Include="lib\jquery-ui\themes\excite-bike\theme.css" />
+    <None Include="lib\jquery-ui\themes\flick\images\animated-overlay.gif" />
+    <None Include="lib\jquery-ui\themes\flick\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <None Include="lib\jquery-ui\themes\flick\images\ui-bg_flat_0_eeeeee_40x100.png" />
+    <None Include="lib\jquery-ui\themes\flick\images\ui-bg_flat_55_ffffff_40x100.png" />
+    <None Include="lib\jquery-ui\themes\flick\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <None Include="lib\jquery-ui\themes\flick\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <None Include="lib\jquery-ui\themes\flick\images\ui-bg_highlight-soft_100_f6f6f6_1x100.png" />
+    <None Include="lib\jquery-ui\themes\flick\images\ui-bg_highlight-soft_25_0073ea_1x100.png" />
+    <None Include="lib\jquery-ui\themes\flick\images\ui-bg_highlight-soft_50_dddddd_1x100.png" />
+    <None Include="lib\jquery-ui\themes\flick\images\ui-icons_0073ea_256x240.png" />
+    <None Include="lib\jquery-ui\themes\flick\images\ui-icons_454545_256x240.png" />
+    <None Include="lib\jquery-ui\themes\flick\images\ui-icons_666666_256x240.png" />
+    <None Include="lib\jquery-ui\themes\flick\images\ui-icons_ff0084_256x240.png" />
+    <None Include="lib\jquery-ui\themes\flick\images\ui-icons_ffffff_256x240.png" />
+    <None Include="lib\jquery-ui\themes\flick\jquery-ui.css" />
+    <None Include="lib\jquery-ui\themes\flick\jquery-ui.min.css" />
+    <None Include="lib\jquery-ui\themes\flick\theme.css" />
+    <None Include="lib\jquery-ui\themes\hot-sneaks\images\animated-overlay.gif" />
+    <None Include="lib\jquery-ui\themes\hot-sneaks\images\ui-bg_diagonals-small_40_db4865_40x40.png" />
+    <None Include="lib\jquery-ui\themes\hot-sneaks\images\ui-bg_diagonals-small_50_93c3cd_40x40.png" />
+    <None Include="lib\jquery-ui\themes\hot-sneaks\images\ui-bg_diagonals-small_50_ff3853_40x40.png" />
+    <None Include="lib\jquery-ui\themes\hot-sneaks\images\ui-bg_diagonals-small_75_ccd232_40x40.png" />
+    <None Include="lib\jquery-ui\themes\hot-sneaks\images\ui-bg_dots-medium_80_ffff38_4x4.png" />
+    <None Include="lib\jquery-ui\themes\hot-sneaks\images\ui-bg_dots-small_35_35414f_2x2.png" />
+    <None Include="lib\jquery-ui\themes\hot-sneaks\images\ui-bg_flat_75_ba9217_40x100.png" />
+    <None Include="lib\jquery-ui\themes\hot-sneaks\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <None Include="lib\jquery-ui\themes\hot-sneaks\images\ui-bg_white-lines_85_f7f7ba_40x100.png" />
+    <None Include="lib\jquery-ui\themes\hot-sneaks\images\ui-icons_454545_256x240.png" />
+    <None Include="lib\jquery-ui\themes\hot-sneaks\images\ui-icons_88a206_256x240.png" />
+    <None Include="lib\jquery-ui\themes\hot-sneaks\images\ui-icons_c02669_256x240.png" />
+    <None Include="lib\jquery-ui\themes\hot-sneaks\images\ui-icons_e1e463_256x240.png" />
+    <None Include="lib\jquery-ui\themes\hot-sneaks\images\ui-icons_ffeb33_256x240.png" />
+    <None Include="lib\jquery-ui\themes\hot-sneaks\images\ui-icons_ffffff_256x240.png" />
+    <None Include="lib\jquery-ui\themes\hot-sneaks\jquery-ui.css" />
+    <None Include="lib\jquery-ui\themes\hot-sneaks\jquery-ui.min.css" />
+    <None Include="lib\jquery-ui\themes\hot-sneaks\theme.css" />
+    <None Include="lib\jquery-ui\themes\humanity\images\animated-overlay.gif" />
+    <None Include="lib\jquery-ui\themes\humanity\images\ui-bg_flat_75_aaaaaa_40x100.png" />
+    <None Include="lib\jquery-ui\themes\humanity\images\ui-bg_glass_100_f5f0e5_1x400.png" />
+    <None Include="lib\jquery-ui\themes\humanity\images\ui-bg_glass_25_cb842e_1x400.png" />
+    <None Include="lib\jquery-ui\themes\humanity\images\ui-bg_glass_70_ede4d4_1x400.png" />
+    <None Include="lib\jquery-ui\themes\humanity\images\ui-bg_highlight-hard_100_f4f0ec_1x100.png" />
+    <None Include="lib\jquery-ui\themes\humanity\images\ui-bg_highlight-hard_65_fee4bd_1x100.png" />
+    <None Include="lib\jquery-ui\themes\humanity\images\ui-bg_highlight-hard_75_f5f5b5_1x100.png" />
+    <None Include="lib\jquery-ui\themes\humanity\images\ui-bg_inset-soft_100_f4f0ec_1x100.png" />
+    <None Include="lib\jquery-ui\themes\humanity\images\ui-icons_c47a23_256x240.png" />
+    <None Include="lib\jquery-ui\themes\humanity\images\ui-icons_cb672b_256x240.png" />
+    <None Include="lib\jquery-ui\themes\humanity\images\ui-icons_f08000_256x240.png" />
+    <None Include="lib\jquery-ui\themes\humanity\images\ui-icons_f35f07_256x240.png" />
+    <None Include="lib\jquery-ui\themes\humanity\images\ui-icons_ff7519_256x240.png" />
+    <None Include="lib\jquery-ui\themes\humanity\images\ui-icons_ffffff_256x240.png" />
+    <None Include="lib\jquery-ui\themes\humanity\jquery-ui.css" />
+    <None Include="lib\jquery-ui\themes\humanity\jquery-ui.min.css" />
+    <None Include="lib\jquery-ui\themes\humanity\theme.css" />
+    <None Include="lib\jquery-ui\themes\le-frog\images\animated-overlay.gif" />
+    <None Include="lib\jquery-ui\themes\le-frog\images\ui-bg_diagonals-small_0_aaaaaa_40x40.png" />
+    <None Include="lib\jquery-ui\themes\le-frog\images\ui-bg_diagonals-thick_15_444444_40x40.png" />
+    <None Include="lib\jquery-ui\themes\le-frog\images\ui-bg_diagonals-thick_95_ffdc2e_40x40.png" />
+    <None Include="lib\jquery-ui\themes\le-frog\images\ui-bg_glass_55_fbf5d0_1x400.png" />
+    <None Include="lib\jquery-ui\themes\le-frog\images\ui-bg_highlight-hard_30_285c00_1x100.png" />
+    <None Include="lib\jquery-ui\themes\le-frog\images\ui-bg_highlight-soft_33_3a8104_1x100.png" />
+    <None Include="lib\jquery-ui\themes\le-frog\images\ui-bg_highlight-soft_50_4eb305_1x100.png" />
+    <None Include="lib\jquery-ui\themes\le-frog\images\ui-bg_highlight-soft_60_4ca20b_1x100.png" />
+    <None Include="lib\jquery-ui\themes\le-frog\images\ui-bg_inset-soft_10_285c00_1x100.png" />
+    <None Include="lib\jquery-ui\themes\le-frog\images\ui-icons_4eb305_256x240.png" />
+    <None Include="lib\jquery-ui\themes\le-frog\images\ui-icons_72b42d_256x240.png" />
+    <None Include="lib\jquery-ui\themes\le-frog\images\ui-icons_cd0a0a_256x240.png" />
+    <None Include="lib\jquery-ui\themes\le-frog\images\ui-icons_ffffff_256x240.png" />
+    <None Include="lib\jquery-ui\themes\le-frog\jquery-ui.css" />
+    <None Include="lib\jquery-ui\themes\le-frog\jquery-ui.min.css" />
+    <None Include="lib\jquery-ui\themes\le-frog\theme.css" />
+    <None Include="lib\jquery-ui\themes\mint-choc\images\animated-overlay.gif" />
+    <None Include="lib\jquery-ui\themes\mint-choc\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <None Include="lib\jquery-ui\themes\mint-choc\images\ui-bg_glass_15_5f391b_1x400.png" />
+    <None Include="lib\jquery-ui\themes\mint-choc\images\ui-bg_gloss-wave_20_1c160d_500x100.png" />
+    <None Include="lib\jquery-ui\themes\mint-choc\images\ui-bg_gloss-wave_25_453326_500x100.png" />
+    <None Include="lib\jquery-ui\themes\mint-choc\images\ui-bg_gloss-wave_30_44372c_500x100.png" />
+    <None Include="lib\jquery-ui\themes\mint-choc\images\ui-bg_highlight-soft_20_201913_1x100.png" />
+    <None Include="lib\jquery-ui\themes\mint-choc\images\ui-bg_highlight-soft_20_619226_1x100.png" />
+    <None Include="lib\jquery-ui\themes\mint-choc\images\ui-bg_inset-soft_10_201913_1x100.png" />
+    <None Include="lib\jquery-ui\themes\mint-choc\images\ui-icons_222222_256x240.png" />
+    <None Include="lib\jquery-ui\themes\mint-choc\images\ui-icons_9bcc60_256x240.png" />
+    <None Include="lib\jquery-ui\themes\mint-choc\images\ui-icons_add978_256x240.png" />
+    <None Include="lib\jquery-ui\themes\mint-choc\images\ui-icons_e3ddc9_256x240.png" />
+    <None Include="lib\jquery-ui\themes\mint-choc\images\ui-icons_f1fd86_256x240.png" />
+    <None Include="lib\jquery-ui\themes\mint-choc\images\ui-icons_ffffff_256x240.png" />
+    <None Include="lib\jquery-ui\themes\mint-choc\jquery-ui.css" />
+    <None Include="lib\jquery-ui\themes\mint-choc\jquery-ui.min.css" />
+    <None Include="lib\jquery-ui\themes\mint-choc\theme.css" />
+    <None Include="lib\jquery-ui\themes\overcast\images\animated-overlay.gif" />
+    <None Include="lib\jquery-ui\themes\overcast\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <None Include="lib\jquery-ui\themes\overcast\images\ui-bg_flat_0_eeeeee_40x100.png" />
+    <None Include="lib\jquery-ui\themes\overcast\images\ui-bg_flat_55_c0402a_40x100.png" />
+    <None Include="lib\jquery-ui\themes\overcast\images\ui-bg_flat_55_eeeeee_40x100.png" />
+    <None Include="lib\jquery-ui\themes\overcast\images\ui-bg_glass_100_f8f8f8_1x400.png" />
+    <None Include="lib\jquery-ui\themes\overcast\images\ui-bg_glass_35_dddddd_1x400.png" />
+    <None Include="lib\jquery-ui\themes\overcast\images\ui-bg_glass_60_eeeeee_1x400.png" />
+    <None Include="lib\jquery-ui\themes\overcast\images\ui-bg_inset-hard_75_999999_1x100.png" />
+    <None Include="lib\jquery-ui\themes\overcast\images\ui-bg_inset-soft_50_c9c9c9_1x100.png" />
+    <None Include="lib\jquery-ui\themes\overcast\images\ui-icons_3383bb_256x240.png" />
+    <None Include="lib\jquery-ui\themes\overcast\images\ui-icons_454545_256x240.png" />
+    <None Include="lib\jquery-ui\themes\overcast\images\ui-icons_70b2e1_256x240.png" />
+    <None Include="lib\jquery-ui\themes\overcast\images\ui-icons_999999_256x240.png" />
+    <None Include="lib\jquery-ui\themes\overcast\images\ui-icons_fbc856_256x240.png" />
+    <None Include="lib\jquery-ui\themes\overcast\jquery-ui.css" />
+    <None Include="lib\jquery-ui\themes\overcast\jquery-ui.min.css" />
+    <None Include="lib\jquery-ui\themes\overcast\theme.css" />
+    <None Include="lib\jquery-ui\themes\pepper-grinder\images\animated-overlay.gif" />
+    <None Include="lib\jquery-ui\themes\pepper-grinder\images\ui-bg_diagonal-maze_20_6e4f1c_10x10.png" />
+    <None Include="lib\jquery-ui\themes\pepper-grinder\images\ui-bg_diagonal-maze_40_000000_10x10.png" />
+    <None Include="lib\jquery-ui\themes\pepper-grinder\images\ui-bg_fine-grain_10_eceadf_60x60.png" />
+    <None Include="lib\jquery-ui\themes\pepper-grinder\images\ui-bg_fine-grain_10_f8f7f6_60x60.png" />
+    <None Include="lib\jquery-ui\themes\pepper-grinder\images\ui-bg_fine-grain_15_eceadf_60x60.png" />
+    <None Include="lib\jquery-ui\themes\pepper-grinder\images\ui-bg_fine-grain_15_f7f3de_60x60.png" />
+    <None Include="lib\jquery-ui\themes\pepper-grinder\images\ui-bg_fine-grain_15_ffffff_60x60.png" />
+    <None Include="lib\jquery-ui\themes\pepper-grinder\images\ui-bg_fine-grain_65_654b24_60x60.png" />
+    <None Include="lib\jquery-ui\themes\pepper-grinder\images\ui-bg_fine-grain_68_b83400_60x60.png" />
+    <None Include="lib\jquery-ui\themes\pepper-grinder\images\ui-icons_222222_256x240.png" />
+    <None Include="lib\jquery-ui\themes\pepper-grinder\images\ui-icons_3572ac_256x240.png" />
+    <None Include="lib\jquery-ui\themes\pepper-grinder\images\ui-icons_8c291d_256x240.png" />
+    <None Include="lib\jquery-ui\themes\pepper-grinder\images\ui-icons_b83400_256x240.png" />
+    <None Include="lib\jquery-ui\themes\pepper-grinder\images\ui-icons_fbdb93_256x240.png" />
+    <None Include="lib\jquery-ui\themes\pepper-grinder\images\ui-icons_ffffff_256x240.png" />
+    <None Include="lib\jquery-ui\themes\pepper-grinder\jquery-ui.css" />
+    <None Include="lib\jquery-ui\themes\pepper-grinder\jquery-ui.min.css" />
+    <None Include="lib\jquery-ui\themes\pepper-grinder\theme.css" />
+    <None Include="lib\jquery-ui\themes\redmond\images\animated-overlay.gif" />
+    <None Include="lib\jquery-ui\themes\redmond\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <None Include="lib\jquery-ui\themes\redmond\images\ui-bg_flat_55_fbec88_40x100.png" />
+    <None Include="lib\jquery-ui\themes\redmond\images\ui-bg_glass_75_d0e5f5_1x400.png" />
+    <None Include="lib\jquery-ui\themes\redmond\images\ui-bg_glass_85_dfeffc_1x400.png" />
+    <None Include="lib\jquery-ui\themes\redmond\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <None Include="lib\jquery-ui\themes\redmond\images\ui-bg_gloss-wave_55_5c9ccc_500x100.png" />
+    <None Include="lib\jquery-ui\themes\redmond\images\ui-bg_inset-hard_100_f5f8f9_1x100.png" />
+    <None Include="lib\jquery-ui\themes\redmond\images\ui-bg_inset-hard_100_fcfdfd_1x100.png" />
+    <None Include="lib\jquery-ui\themes\redmond\images\ui-icons_217bc0_256x240.png" />
+    <None Include="lib\jquery-ui\themes\redmond\images\ui-icons_2e83ff_256x240.png" />
+    <None Include="lib\jquery-ui\themes\redmond\images\ui-icons_469bdd_256x240.png" />
+    <None Include="lib\jquery-ui\themes\redmond\images\ui-icons_6da8d5_256x240.png" />
+    <None Include="lib\jquery-ui\themes\redmond\images\ui-icons_cd0a0a_256x240.png" />
+    <None Include="lib\jquery-ui\themes\redmond\images\ui-icons_d8e7f3_256x240.png" />
+    <None Include="lib\jquery-ui\themes\redmond\images\ui-icons_f9bd01_256x240.png" />
+    <None Include="lib\jquery-ui\themes\redmond\jquery-ui.css" />
+    <None Include="lib\jquery-ui\themes\redmond\jquery-ui.min.css" />
+    <None Include="lib\jquery-ui\themes\redmond\theme.css" />
+    <None Include="lib\jquery-ui\themes\smoothness\images\animated-overlay.gif" />
+    <None Include="lib\jquery-ui\themes\smoothness\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <None Include="lib\jquery-ui\themes\smoothness\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <None Include="lib\jquery-ui\themes\smoothness\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <None Include="lib\jquery-ui\themes\smoothness\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <None Include="lib\jquery-ui\themes\smoothness\images\ui-bg_glass_75_dadada_1x400.png" />
+    <None Include="lib\jquery-ui\themes\smoothness\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <None Include="lib\jquery-ui\themes\smoothness\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <None Include="lib\jquery-ui\themes\smoothness\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <None Include="lib\jquery-ui\themes\smoothness\images\ui-icons_222222_256x240.png" />
+    <None Include="lib\jquery-ui\themes\smoothness\images\ui-icons_2e83ff_256x240.png" />
+    <None Include="lib\jquery-ui\themes\smoothness\images\ui-icons_454545_256x240.png" />
+    <None Include="lib\jquery-ui\themes\smoothness\images\ui-icons_888888_256x240.png" />
+    <None Include="lib\jquery-ui\themes\smoothness\images\ui-icons_cd0a0a_256x240.png" />
+    <None Include="lib\jquery-ui\themes\smoothness\jquery-ui.css" />
+    <None Include="lib\jquery-ui\themes\smoothness\jquery-ui.min.css" />
+    <None Include="lib\jquery-ui\themes\smoothness\theme.css" />
+    <None Include="lib\jquery-ui\themes\south-street\images\animated-overlay.gif" />
+    <None Include="lib\jquery-ui\themes\south-street\images\ui-bg_glass_55_fcf0ba_1x400.png" />
+    <None Include="lib\jquery-ui\themes\south-street\images\ui-bg_gloss-wave_100_ece8da_500x100.png" />
+    <None Include="lib\jquery-ui\themes\south-street\images\ui-bg_highlight-hard_100_f5f3e5_1x100.png" />
+    <None Include="lib\jquery-ui\themes\south-street\images\ui-bg_highlight-hard_100_fafaf4_1x100.png" />
+    <None Include="lib\jquery-ui\themes\south-street\images\ui-bg_highlight-hard_15_459e00_1x100.png" />
+    <None Include="lib\jquery-ui\themes\south-street\images\ui-bg_highlight-hard_95_cccccc_1x100.png" />
+    <None Include="lib\jquery-ui\themes\south-street\images\ui-bg_highlight-soft_25_67b021_1x100.png" />
+    <None Include="lib\jquery-ui\themes\south-street\images\ui-bg_highlight-soft_95_ffedad_1x100.png" />
+    <None Include="lib\jquery-ui\themes\south-street\images\ui-bg_inset-soft_15_2b2922_1x100.png" />
+    <None Include="lib\jquery-ui\themes\south-street\images\ui-icons_808080_256x240.png" />
+    <None Include="lib\jquery-ui\themes\south-street\images\ui-icons_847e71_256x240.png" />
+    <None Include="lib\jquery-ui\themes\south-street\images\ui-icons_8DC262_256x240.png" />
+    <None Include="lib\jquery-ui\themes\south-street\images\ui-icons_cd0a0a_256x240.png" />
+    <None Include="lib\jquery-ui\themes\south-street\images\ui-icons_eeeeee_256x240.png" />
+    <None Include="lib\jquery-ui\themes\south-street\images\ui-icons_ffffff_256x240.png" />
+    <None Include="lib\jquery-ui\themes\south-street\jquery-ui.css" />
+    <None Include="lib\jquery-ui\themes\south-street\jquery-ui.min.css" />
+    <None Include="lib\jquery-ui\themes\south-street\theme.css" />
+    <None Include="lib\jquery-ui\themes\start\images\animated-overlay.gif" />
+    <None Include="lib\jquery-ui\themes\start\images\ui-bg_flat_55_999999_40x100.png" />
+    <None Include="lib\jquery-ui\themes\start\images\ui-bg_flat_75_aaaaaa_40x100.png" />
+    <None Include="lib\jquery-ui\themes\start\images\ui-bg_glass_45_0078ae_1x400.png" />
+    <None Include="lib\jquery-ui\themes\start\images\ui-bg_glass_55_f8da4e_1x400.png" />
+    <None Include="lib\jquery-ui\themes\start\images\ui-bg_glass_75_79c9ec_1x400.png" />
+    <None Include="lib\jquery-ui\themes\start\images\ui-bg_gloss-wave_45_e14f1c_500x100.png" />
+    <None Include="lib\jquery-ui\themes\start\images\ui-bg_gloss-wave_50_6eac2c_500x100.png" />
+    <None Include="lib\jquery-ui\themes\start\images\ui-bg_gloss-wave_75_2191c0_500x100.png" />
+    <None Include="lib\jquery-ui\themes\start\images\ui-bg_inset-hard_100_fcfdfd_1x100.png" />
+    <None Include="lib\jquery-ui\themes\start\images\ui-icons_0078ae_256x240.png" />
+    <None Include="lib\jquery-ui\themes\start\images\ui-icons_056b93_256x240.png" />
+    <None Include="lib\jquery-ui\themes\start\images\ui-icons_d8e7f3_256x240.png" />
+    <None Include="lib\jquery-ui\themes\start\images\ui-icons_e0fdff_256x240.png" />
+    <None Include="lib\jquery-ui\themes\start\images\ui-icons_f5e175_256x240.png" />
+    <None Include="lib\jquery-ui\themes\start\images\ui-icons_f7a50d_256x240.png" />
+    <None Include="lib\jquery-ui\themes\start\images\ui-icons_fcd113_256x240.png" />
+    <None Include="lib\jquery-ui\themes\start\jquery-ui.css" />
+    <None Include="lib\jquery-ui\themes\start\jquery-ui.min.css" />
+    <None Include="lib\jquery-ui\themes\start\theme.css" />
+    <None Include="lib\jquery-ui\themes\sunny\images\animated-overlay.gif" />
+    <None Include="lib\jquery-ui\themes\sunny\images\ui-bg_diagonals-medium_20_d34d17_40x40.png" />
+    <None Include="lib\jquery-ui\themes\sunny\images\ui-bg_flat_30_cccccc_40x100.png" />
+    <None Include="lib\jquery-ui\themes\sunny\images\ui-bg_flat_50_5c5c5c_40x100.png" />
+    <None Include="lib\jquery-ui\themes\sunny\images\ui-bg_gloss-wave_45_817865_500x100.png" />
+    <None Include="lib\jquery-ui\themes\sunny\images\ui-bg_gloss-wave_60_fece2f_500x100.png" />
+    <None Include="lib\jquery-ui\themes\sunny\images\ui-bg_gloss-wave_70_ffdd57_500x100.png" />
+    <None Include="lib\jquery-ui\themes\sunny\images\ui-bg_gloss-wave_90_fff9e5_500x100.png" />
+    <None Include="lib\jquery-ui\themes\sunny\images\ui-bg_highlight-soft_100_feeebd_1x100.png" />
+    <None Include="lib\jquery-ui\themes\sunny\images\ui-bg_inset-soft_30_ffffff_1x100.png" />
+    <None Include="lib\jquery-ui\themes\sunny\images\ui-icons_3d3d3d_256x240.png" />
+    <None Include="lib\jquery-ui\themes\sunny\images\ui-icons_bd7b00_256x240.png" />
+    <None Include="lib\jquery-ui\themes\sunny\images\ui-icons_d19405_256x240.png" />
+    <None Include="lib\jquery-ui\themes\sunny\images\ui-icons_eb990f_256x240.png" />
+    <None Include="lib\jquery-ui\themes\sunny\images\ui-icons_ed9f26_256x240.png" />
+    <None Include="lib\jquery-ui\themes\sunny\images\ui-icons_fadc7a_256x240.png" />
+    <None Include="lib\jquery-ui\themes\sunny\images\ui-icons_ffe180_256x240.png" />
+    <None Include="lib\jquery-ui\themes\sunny\jquery-ui.css" />
+    <None Include="lib\jquery-ui\themes\sunny\jquery-ui.min.css" />
+    <None Include="lib\jquery-ui\themes\sunny\theme.css" />
+    <None Include="lib\jquery-ui\themes\swanky-purse\images\animated-overlay.gif" />
+    <None Include="lib\jquery-ui\themes\swanky-purse\images\ui-bg_diamond_10_4f4221_10x8.png" />
+    <None Include="lib\jquery-ui\themes\swanky-purse\images\ui-bg_diamond_20_372806_10x8.png" />
+    <None Include="lib\jquery-ui\themes\swanky-purse\images\ui-bg_diamond_25_675423_10x8.png" />
+    <None Include="lib\jquery-ui\themes\swanky-purse\images\ui-bg_diamond_25_d5ac5d_10x8.png" />
+    <None Include="lib\jquery-ui\themes\swanky-purse\images\ui-bg_diamond_8_261803_10x8.png" />
+    <None Include="lib\jquery-ui\themes\swanky-purse\images\ui-bg_diamond_8_443113_10x8.png" />
+    <None Include="lib\jquery-ui\themes\swanky-purse\images\ui-bg_flat_75_ddd4b0_40x100.png" />
+    <None Include="lib\jquery-ui\themes\swanky-purse\images\ui-bg_highlight-hard_65_fee4bd_1x100.png" />
+    <None Include="lib\jquery-ui\themes\swanky-purse\images\ui-icons_070603_256x240.png" />
+    <None Include="lib\jquery-ui\themes\swanky-purse\images\ui-icons_e8e2b5_256x240.png" />
+    <None Include="lib\jquery-ui\themes\swanky-purse\images\ui-icons_e9cd86_256x240.png" />
+    <None Include="lib\jquery-ui\themes\swanky-purse\images\ui-icons_efec9f_256x240.png" />
+    <None Include="lib\jquery-ui\themes\swanky-purse\images\ui-icons_f2ec64_256x240.png" />
+    <None Include="lib\jquery-ui\themes\swanky-purse\images\ui-icons_f9f2bd_256x240.png" />
+    <None Include="lib\jquery-ui\themes\swanky-purse\images\ui-icons_ff7519_256x240.png" />
+    <None Include="lib\jquery-ui\themes\swanky-purse\jquery-ui.css" />
+    <None Include="lib\jquery-ui\themes\swanky-purse\jquery-ui.min.css" />
+    <None Include="lib\jquery-ui\themes\swanky-purse\theme.css" />
+    <None Include="lib\jquery-ui\themes\trontastic\images\animated-overlay.gif" />
+    <None Include="lib\jquery-ui\themes\trontastic\images\ui-bg_diagonals-small_50_262626_40x40.png" />
+    <None Include="lib\jquery-ui\themes\trontastic\images\ui-bg_flat_0_303030_40x100.png" />
+    <None Include="lib\jquery-ui\themes\trontastic\images\ui-bg_flat_0_4c4c4c_40x100.png" />
+    <None Include="lib\jquery-ui\themes\trontastic\images\ui-bg_glass_40_0a0a0a_1x400.png" />
+    <None Include="lib\jquery-ui\themes\trontastic\images\ui-bg_glass_55_f1fbe5_1x400.png" />
+    <None Include="lib\jquery-ui\themes\trontastic\images\ui-bg_glass_60_000000_1x400.png" />
+    <None Include="lib\jquery-ui\themes\trontastic\images\ui-bg_gloss-wave_55_000000_500x100.png" />
+    <None Include="lib\jquery-ui\themes\trontastic\images\ui-bg_gloss-wave_85_9fda58_500x100.png" />
+    <None Include="lib\jquery-ui\themes\trontastic\images\ui-bg_gloss-wave_95_f6ecd5_500x100.png" />
+    <None Include="lib\jquery-ui\themes\trontastic\images\ui-icons_000000_256x240.png" />
+    <None Include="lib\jquery-ui\themes\trontastic\images\ui-icons_1f1f1f_256x240.png" />
+    <None Include="lib\jquery-ui\themes\trontastic\images\ui-icons_9fda58_256x240.png" />
+    <None Include="lib\jquery-ui\themes\trontastic\images\ui-icons_b8ec79_256x240.png" />
+    <None Include="lib\jquery-ui\themes\trontastic\images\ui-icons_cd0a0a_256x240.png" />
+    <None Include="lib\jquery-ui\themes\trontastic\images\ui-icons_ffffff_256x240.png" />
+    <None Include="lib\jquery-ui\themes\trontastic\jquery-ui.css" />
+    <None Include="lib\jquery-ui\themes\trontastic\jquery-ui.min.css" />
+    <None Include="lib\jquery-ui\themes\trontastic\theme.css" />
+    <None Include="lib\jquery-ui\themes\ui-darkness\images\animated-overlay.gif" />
+    <None Include="lib\jquery-ui\themes\ui-darkness\images\ui-bg_flat_30_cccccc_40x100.png" />
+    <None Include="lib\jquery-ui\themes\ui-darkness\images\ui-bg_flat_50_5c5c5c_40x100.png" />
+    <None Include="lib\jquery-ui\themes\ui-darkness\images\ui-bg_glass_20_555555_1x400.png" />
+    <None Include="lib\jquery-ui\themes\ui-darkness\images\ui-bg_glass_40_0078a3_1x400.png" />
+    <None Include="lib\jquery-ui\themes\ui-darkness\images\ui-bg_glass_40_ffc73d_1x400.png" />
+    <None Include="lib\jquery-ui\themes\ui-darkness\images\ui-bg_gloss-wave_25_333333_500x100.png" />
+    <None Include="lib\jquery-ui\themes\ui-darkness\images\ui-bg_highlight-soft_80_eeeeee_1x100.png" />
+    <None Include="lib\jquery-ui\themes\ui-darkness\images\ui-bg_inset-soft_25_000000_1x100.png" />
+    <None Include="lib\jquery-ui\themes\ui-darkness\images\ui-bg_inset-soft_30_f58400_1x100.png" />
+    <None Include="lib\jquery-ui\themes\ui-darkness\images\ui-icons_222222_256x240.png" />
+    <None Include="lib\jquery-ui\themes\ui-darkness\images\ui-icons_4b8e0b_256x240.png" />
+    <None Include="lib\jquery-ui\themes\ui-darkness\images\ui-icons_a83300_256x240.png" />
+    <None Include="lib\jquery-ui\themes\ui-darkness\images\ui-icons_cccccc_256x240.png" />
+    <None Include="lib\jquery-ui\themes\ui-darkness\images\ui-icons_ffffff_256x240.png" />
+    <None Include="lib\jquery-ui\themes\ui-darkness\jquery-ui.css" />
+    <None Include="lib\jquery-ui\themes\ui-darkness\jquery-ui.min.css" />
+    <None Include="lib\jquery-ui\themes\ui-darkness\theme.css" />
+    <None Include="lib\jquery-ui\themes\ui-lightness\images\animated-overlay.gif" />
+    <None Include="lib\jquery-ui\themes\ui-lightness\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <None Include="lib\jquery-ui\themes\ui-lightness\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <None Include="lib\jquery-ui\themes\ui-lightness\images\ui-bg_flat_10_000000_40x100.png" />
+    <None Include="lib\jquery-ui\themes\ui-lightness\images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <None Include="lib\jquery-ui\themes\ui-lightness\images\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <None Include="lib\jquery-ui\themes\ui-lightness\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <None Include="lib\jquery-ui\themes\ui-lightness\images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <None Include="lib\jquery-ui\themes\ui-lightness\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <None Include="lib\jquery-ui\themes\ui-lightness\images\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <None Include="lib\jquery-ui\themes\ui-lightness\images\ui-icons_222222_256x240.png" />
+    <None Include="lib\jquery-ui\themes\ui-lightness\images\ui-icons_228ef1_256x240.png" />
+    <None Include="lib\jquery-ui\themes\ui-lightness\images\ui-icons_ef8c08_256x240.png" />
+    <None Include="lib\jquery-ui\themes\ui-lightness\images\ui-icons_ffd27a_256x240.png" />
+    <None Include="lib\jquery-ui\themes\ui-lightness\images\ui-icons_ffffff_256x240.png" />
+    <None Include="lib\jquery-ui\themes\ui-lightness\jquery-ui.css" />
+    <None Include="lib\jquery-ui\themes\ui-lightness\jquery-ui.min.css" />
+    <None Include="lib\jquery-ui\themes\ui-lightness\theme.css" />
+    <None Include="lib\jquery-ui\themes\vader\images\animated-overlay.gif" />
+    <None Include="lib\jquery-ui\themes\vader\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <None Include="lib\jquery-ui\themes\vader\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <None Include="lib\jquery-ui\themes\vader\images\ui-bg_gloss-wave_16_121212_500x100.png" />
+    <None Include="lib\jquery-ui\themes\vader\images\ui-bg_highlight-hard_15_888888_1x100.png" />
+    <None Include="lib\jquery-ui\themes\vader\images\ui-bg_highlight-hard_55_555555_1x100.png" />
+    <None Include="lib\jquery-ui\themes\vader\images\ui-bg_highlight-soft_35_adadad_1x100.png" />
+    <None Include="lib\jquery-ui\themes\vader\images\ui-bg_highlight-soft_60_dddddd_1x100.png" />
+    <None Include="lib\jquery-ui\themes\vader\images\ui-bg_inset-soft_15_121212_1x100.png" />
+    <None Include="lib\jquery-ui\themes\vader\images\ui-icons_666666_256x240.png" />
+    <None Include="lib\jquery-ui\themes\vader\images\ui-icons_aaaaaa_256x240.png" />
+    <None Include="lib\jquery-ui\themes\vader\images\ui-icons_bbbbbb_256x240.png" />
+    <None Include="lib\jquery-ui\themes\vader\images\ui-icons_c98000_256x240.png" />
+    <None Include="lib\jquery-ui\themes\vader\images\ui-icons_cccccc_256x240.png" />
+    <None Include="lib\jquery-ui\themes\vader\images\ui-icons_cd0a0a_256x240.png" />
+    <None Include="lib\jquery-ui\themes\vader\images\ui-icons_f29a00_256x240.png" />
+    <None Include="lib\jquery-ui\themes\vader\jquery-ui.css" />
+    <None Include="lib\jquery-ui\themes\vader\jquery-ui.min.css" />
+    <None Include="lib\jquery-ui\themes\vader\theme.css" />
+    <None Include="lib\jquery-ui\ui\accordion.js" />
+    <None Include="lib\jquery-ui\ui\autocomplete.js" />
+    <None Include="lib\jquery-ui\ui\button.js" />
+    <None Include="lib\jquery-ui\ui\core.js" />
+    <None Include="lib\jquery-ui\ui\datepicker.js" />
+    <None Include="lib\jquery-ui\ui\dialog.js" />
+    <None Include="lib\jquery-ui\ui\draggable.js" />
+    <None Include="lib\jquery-ui\ui\droppable.js" />
+    <None Include="lib\jquery-ui\ui\effect-blind.js" />
+    <None Include="lib\jquery-ui\ui\effect-bounce.js" />
+    <None Include="lib\jquery-ui\ui\effect-clip.js" />
+    <None Include="lib\jquery-ui\ui\effect-drop.js" />
+    <None Include="lib\jquery-ui\ui\effect-explode.js" />
+    <None Include="lib\jquery-ui\ui\effect-fade.js" />
+    <None Include="lib\jquery-ui\ui\effect-fold.js" />
+    <None Include="lib\jquery-ui\ui\effect-highlight.js" />
+    <None Include="lib\jquery-ui\ui\effect-puff.js" />
+    <None Include="lib\jquery-ui\ui\effect-pulsate.js" />
+    <None Include="lib\jquery-ui\ui\effect-scale.js" />
+    <None Include="lib\jquery-ui\ui\effect-shake.js" />
+    <None Include="lib\jquery-ui\ui\effect-size.js" />
+    <None Include="lib\jquery-ui\ui\effect-slide.js" />
+    <None Include="lib\jquery-ui\ui\effect-transfer.js" />
+    <None Include="lib\jquery-ui\ui\effect.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-af.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-ar-DZ.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-ar.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-az.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-be.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-bg.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-bs.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-ca.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-cs.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-cy-GB.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-da.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-de.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-el.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-en-AU.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-en-GB.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-en-NZ.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-eo.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-es.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-et.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-eu.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-fa.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-fi.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-fo.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-fr-CA.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-fr-CH.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-fr.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-gl.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-he.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-hi.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-hr.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-hu.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-hy.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-id.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-is.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-it-CH.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-it.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-ja.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-ka.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-kk.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-km.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-ko.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-ky.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-lb.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-lt.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-lv.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-mk.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-ml.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-ms.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-nb.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-nl-BE.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-nl.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-nn.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-no.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-pl.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-pt-BR.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-pt.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-rm.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-ro.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-ru.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-sk.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-sl.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-sq.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-sr-SR.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-sr.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-sv.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-ta.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-th.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-tj.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-tr.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-uk.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-vi.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-zh-CN.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-zh-HK.js" />
+    <None Include="lib\jquery-ui\ui\i18n\datepicker-zh-TW.js" />
+    <None Include="lib\jquery-ui\ui\menu.js" />
+    <None Include="lib\jquery-ui\ui\minified\accordion.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\autocomplete.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\button.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\core.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\datepicker.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\dialog.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\draggable.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\droppable.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\effect-blind.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\effect-bounce.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\effect-clip.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\effect-drop.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\effect-explode.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\effect-fade.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\effect-fold.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\effect-highlight.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\effect-puff.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\effect-pulsate.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\effect-scale.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\effect-shake.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\effect-size.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\effect-slide.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\effect-transfer.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\effect.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-af.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-ar-DZ.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-ar.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-az.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-be.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-bg.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-bs.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-ca.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-cs.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-cy-GB.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-da.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-de.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-el.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-en-AU.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-en-GB.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-en-NZ.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-eo.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-es.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-et.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-eu.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-fa.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-fi.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-fo.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-fr-CA.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-fr-CH.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-fr.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-gl.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-he.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-hi.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-hr.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-hu.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-hy.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-id.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-is.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-it-CH.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-it.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-ja.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-ka.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-kk.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-km.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-ko.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-ky.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-lb.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-lt.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-lv.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-mk.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-ml.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-ms.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-nb.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-nl-BE.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-nl.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-nn.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-no.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-pl.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-pt-BR.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-pt.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-rm.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-ro.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-ru.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-sk.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-sl.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-sq.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-sr-SR.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-sr.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-sv.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-ta.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-th.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-tj.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-tr.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-uk.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-vi.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-zh-CN.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-zh-HK.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\i18n\datepicker-zh-TW.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\menu.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\mouse.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\position.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\progressbar.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\resizable.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\selectable.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\selectmenu.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\slider.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\sortable.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\spinner.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\tabs.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\tooltip.min.js" />
+    <None Include="lib\jquery-ui\ui\minified\widget.min.js" />
+    <None Include="lib\jquery-ui\ui\mouse.js" />
+    <None Include="lib\jquery-ui\ui\position.js" />
+    <None Include="lib\jquery-ui\ui\progressbar.js" />
+    <None Include="lib\jquery-ui\ui\resizable.js" />
+    <None Include="lib\jquery-ui\ui\selectable.js" />
+    <None Include="lib\jquery-ui\ui\selectmenu.js" />
+    <None Include="lib\jquery-ui\ui\slider.js" />
+    <None Include="lib\jquery-ui\ui\sortable.js" />
+    <None Include="lib\jquery-ui\ui\spinner.js" />
+    <None Include="lib\jquery-ui\ui\tabs.js" />
+    <None Include="lib\jquery-ui\ui\tooltip.js" />
+    <None Include="lib\jquery-ui\ui\widget.js" />
+    <None Include="lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js" />
+    <None Include="lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js" />
+    <None Include="lib\jquery-validation\build\release.js" />
+    <None Include="lib\jquery-validation\dist\additional-methods.js" />
+    <None Include="lib\jquery-validation\dist\additional-methods.min.js" />
+    <None Include="lib\jquery-validation\dist\jquery.validate.js" />
+    <None Include="lib\jquery-validation\dist\jquery.validate.min.js" />
+    <None Include="lib\jquery-validation\Gruntfile.js" />
+    <None Include="lib\jquery-validation\src\additional\accept.js" />
+    <None Include="lib\jquery-validation\src\additional\additional.js" />
+    <None Include="lib\jquery-validation\src\additional\alphanumeric.js" />
+    <None Include="lib\jquery-validation\src\additional\bankaccountNL.js" />
+    <None Include="lib\jquery-validation\src\additional\bankorgiroaccountNL.js" />
+    <None Include="lib\jquery-validation\src\additional\bic.js" />
+    <None Include="lib\jquery-validation\src\additional\cifES.js" />
+    <None Include="lib\jquery-validation\src\additional\cpfBR.js" />
+    <None Include="lib\jquery-validation\src\additional\creditcardtypes.js" />
+    <None Include="lib\jquery-validation\src\additional\currency.js" />
+    <None Include="lib\jquery-validation\src\additional\dateFA.js" />
+    <None Include="lib\jquery-validation\src\additional\dateITA.js" />
+    <None Include="lib\jquery-validation\src\additional\dateNL.js" />
+    <None Include="lib\jquery-validation\src\additional\extension.js" />
+    <None Include="lib\jquery-validation\src\additional\giroaccountNL.js" />
+    <None Include="lib\jquery-validation\src\additional\iban.js" />
+    <None Include="lib\jquery-validation\src\additional\integer.js" />
+    <None Include="lib\jquery-validation\src\additional\ipv4.js" />
+    <None Include="lib\jquery-validation\src\additional\ipv6.js" />
+    <None Include="lib\jquery-validation\src\additional\lettersonly.js" />
+    <None Include="lib\jquery-validation\src\additional\letterswithbasicpunc.js" />
+    <None Include="lib\jquery-validation\src\additional\mobileNL.js" />
+    <None Include="lib\jquery-validation\src\additional\mobileUK.js" />
+    <None Include="lib\jquery-validation\src\additional\nieES.js" />
+    <None Include="lib\jquery-validation\src\additional\nifES.js" />
+    <None Include="lib\jquery-validation\src\additional\notEqualTo.js" />
+    <None Include="lib\jquery-validation\src\additional\nowhitespace.js" />
+    <None Include="lib\jquery-validation\src\additional\pattern.js" />
+    <None Include="lib\jquery-validation\src\additional\phoneNL.js" />
+    <None Include="lib\jquery-validation\src\additional\phonesUK.js" />
+    <None Include="lib\jquery-validation\src\additional\phoneUK.js" />
+    <None Include="lib\jquery-validation\src\additional\phoneUS.js" />
+    <None Include="lib\jquery-validation\src\additional\postalcodeBR.js" />
+    <None Include="lib\jquery-validation\src\additional\postalCodeCA.js" />
+    <None Include="lib\jquery-validation\src\additional\postalcodeIT.js" />
+    <None Include="lib\jquery-validation\src\additional\postalcodeNL.js" />
+    <None Include="lib\jquery-validation\src\additional\postcodeUK.js" />
+    <None Include="lib\jquery-validation\src\additional\require_from_group.js" />
+    <None Include="lib\jquery-validation\src\additional\skip_or_fill_minimum.js" />
+    <None Include="lib\jquery-validation\src\additional\statesUS.js" />
+    <None Include="lib\jquery-validation\src\additional\strippedminlength.js" />
+    <None Include="lib\jquery-validation\src\additional\time.js" />
+    <None Include="lib\jquery-validation\src\additional\time12h.js" />
+    <None Include="lib\jquery-validation\src\additional\url2.js" />
+    <None Include="lib\jquery-validation\src\additional\vinUS.js" />
+    <None Include="lib\jquery-validation\src\additional\zipcodeUS.js" />
+    <None Include="lib\jquery-validation\src\additional\ziprange.js" />
+    <None Include="lib\jquery-validation\src\ajax.js" />
+    <None Include="lib\jquery-validation\src\core.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_ar.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_bg.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_bn_BD.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_ca.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_cs.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_da.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_de.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_el.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_es.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_es_AR.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_es_PE.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_et.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_eu.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_fa.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_fi.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_fr.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_ge.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_gl.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_he.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_hr.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_hu.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_hy_AM.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_id.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_is.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_it.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_ja.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_ka.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_kk.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_ko.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_lt.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_lv.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_my.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_nl.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_no.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_pl.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_pt_BR.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_pt_PT.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_ro.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_ru.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_si.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_sk.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_sl.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_sr.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_sr_lat.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_sv.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_th.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_tj.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_tr.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_uk.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_vi.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_zh.js" />
+    <None Include="lib\jquery-validation\src\localization\messages_zh_TW.js" />
+    <None Include="lib\jquery-validation\src\localization\methods_de.js" />
+    <None Include="lib\jquery-validation\src\localization\methods_es_CL.js" />
+    <None Include="lib\jquery-validation\src\localization\methods_fi.js" />
+    <None Include="lib\jquery-validation\src\localization\methods_nl.js" />
+    <None Include="lib\jquery-validation\src\localization\methods_pt.js" />
+    <None Include="lib\jquery.iframe-transport\demo\client.js" />
+    <None Include="lib\jquery.iframe-transport\demo\index.html" />
+    <None Include="lib\jquery.iframe-transport\demo\layout.css" />
+    <None Include="lib\jquery.iframe-transport\demo\spinner.gif" />
+    <None Include="lib\jquery.iframe-transport\jquery.iframe-transport.js" />
+    <None Include="lib\jquery\dist\jquery.js" />
+    <None Include="lib\jquery\dist\jquery.min.js" />
+    <None Include="lib\jquery\MIT-LICENSE.txt" />
+    <None Include="lib\jquery\src\ajax.js" />
+    <None Include="lib\jquery\src\ajax\jsonp.js" />
+    <None Include="lib\jquery\src\ajax\load.js" />
+    <None Include="lib\jquery\src\ajax\parseJSON.js" />
+    <None Include="lib\jquery\src\ajax\parseXML.js" />
+    <None Include="lib\jquery\src\ajax\script.js" />
+    <None Include="lib\jquery\src\ajax\var\nonce.js" />
+    <None Include="lib\jquery\src\ajax\var\rquery.js" />
+    <None Include="lib\jquery\src\ajax\xhr.js" />
+    <None Include="lib\jquery\src\attributes.js" />
+    <None Include="lib\jquery\src\attributes\attr.js" />
+    <None Include="lib\jquery\src\attributes\classes.js" />
+    <None Include="lib\jquery\src\attributes\prop.js" />
+    <None Include="lib\jquery\src\attributes\support.js" />
+    <None Include="lib\jquery\src\attributes\val.js" />
+    <None Include="lib\jquery\src\callbacks.js" />
+    <None Include="lib\jquery\src\core.js" />
+    <None Include="lib\jquery\src\core\access.js" />
+    <None Include="lib\jquery\src\core\init.js" />
+    <None Include="lib\jquery\src\core\parseHTML.js" />
+    <None Include="lib\jquery\src\core\ready.js" />
+    <None Include="lib\jquery\src\core\var\rsingleTag.js" />
+    <None Include="lib\jquery\src\css.js" />
+    <None Include="lib\jquery\src\css\addGetHookIf.js" />
+    <None Include="lib\jquery\src\css\curCSS.js" />
+    <None Include="lib\jquery\src\css\defaultDisplay.js" />
+    <None Include="lib\jquery\src\css\hiddenVisibleSelectors.js" />
+    <None Include="lib\jquery\src\css\support.js" />
+    <None Include="lib\jquery\src\css\swap.js" />
+    <None Include="lib\jquery\src\css\var\cssExpand.js" />
+    <None Include="lib\jquery\src\css\var\getStyles.js" />
+    <None Include="lib\jquery\src\css\var\isHidden.js" />
+    <None Include="lib\jquery\src\css\var\rmargin.js" />
+    <None Include="lib\jquery\src\css\var\rnumnonpx.js" />
+    <None Include="lib\jquery\src\data.js" />
+    <None Include="lib\jquery\src\data\accepts.js" />
+    <None Include="lib\jquery\src\data\Data.js" />
+    <None Include="lib\jquery\src\data\var\data_priv.js" />
+    <None Include="lib\jquery\src\data\var\data_user.js" />
+    <None Include="lib\jquery\src\deferred.js" />
+    <None Include="lib\jquery\src\deprecated.js" />
+    <None Include="lib\jquery\src\dimensions.js" />
+    <None Include="lib\jquery\src\effects.js" />
+    <None Include="lib\jquery\src\effects\animatedSelector.js" />
+    <None Include="lib\jquery\src\effects\Tween.js" />
+    <None Include="lib\jquery\src\event.js" />
+    <None Include="lib\jquery\src\event\ajax.js" />
+    <None Include="lib\jquery\src\event\alias.js" />
+    <None Include="lib\jquery\src\event\support.js" />
+    <None Include="lib\jquery\src\exports\amd.js" />
+    <None Include="lib\jquery\src\exports\global.js" />
+    <None Include="lib\jquery\src\intro.js" />
+    <None Include="lib\jquery\src\jquery.js" />
+    <None Include="lib\jquery\src\manipulation.js" />
+    <None Include="lib\jquery\src\manipulation\support.js" />
+    <None Include="lib\jquery\src\manipulation\var\rcheckableType.js" />
+    <None Include="lib\jquery\src\manipulation\_evalUrl.js" />
+    <None Include="lib\jquery\src\offset.js" />
+    <None Include="lib\jquery\src\outro.js" />
+    <None Include="lib\jquery\src\queue.js" />
+    <None Include="lib\jquery\src\queue\delay.js" />
+    <None Include="lib\jquery\src\selector-native.js" />
+    <None Include="lib\jquery\src\selector-sizzle.js" />
+    <None Include="lib\jquery\src\selector.js" />
+    <None Include="lib\jquery\src\serialize.js" />
+    <None Include="lib\jquery\src\sizzle\dist\sizzle.js" />
+    <None Include="lib\jquery\src\sizzle\dist\sizzle.min.js" />
+    <None Include="lib\jquery\src\traversing.js" />
+    <None Include="lib\jquery\src\traversing\findFilter.js" />
+    <None Include="lib\jquery\src\traversing\var\rneedsContext.js" />
+    <None Include="lib\jquery\src\var\arr.js" />
+    <None Include="lib\jquery\src\var\class2type.js" />
+    <None Include="lib\jquery\src\var\concat.js" />
+    <None Include="lib\jquery\src\var\hasOwn.js" />
+    <None Include="lib\jquery\src\var\indexOf.js" />
+    <None Include="lib\jquery\src\var\pnum.js" />
+    <None Include="lib\jquery\src\var\push.js" />
+    <None Include="lib\jquery\src\var\rnotwhite.js" />
+    <None Include="lib\jquery\src\var\slice.js" />
+    <None Include="lib\jquery\src\var\strundefined.js" />
+    <None Include="lib\jquery\src\var\support.js" />
+    <None Include="lib\jquery\src\var\toString.js" />
+    <None Include="lib\jquery\src\wrap.js" />
+    <None Include="lib\respond\cross-domain\example.html" />
+    <None Include="lib\respond\cross-domain\respond-proxy.html" />
+    <None Include="lib\respond\cross-domain\respond.proxy.gif" />
+    <None Include="lib\respond\cross-domain\respond.proxy.js" />
+    <None Include="lib\respond\dest\respond.matchmedia.addListener.min.js" />
+    <None Include="lib\respond\dest\respond.matchmedia.addListener.src.js" />
+    <None Include="lib\respond\dest\respond.min.js" />
+    <None Include="lib\respond\dest\respond.src.js" />
+    <None Include="lib\respond\Gruntfile.js" />
+    <None Include="lib\respond\src\matchmedia.addListener.js" />
+    <None Include="lib\respond\src\matchmedia.polyfill.js" />
+    <None Include="lib\respond\src\respond.js" />
+    <Content Include="gulpfile.js" />
+    <Content Include="Scripts\common.min.js" />
+    <Content Include="Scripts\editemoji.js" />
+    <Content Include="Scripts\emoji-strategy.js" />
+    <Content Include="Scripts\likes.js" />
+    <Content Include="Scripts\modernizr.js" />
+    <Content Include="Scripts\showemoji.js" />
+    <Content Include="Scripts\upload.min.js" />
+    <Content Include="Scripts\uploads.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\NotInvited.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Albums\Album.cshtml" />
+    <Content Include="Views\Albums\Index.cshtml" />
+    <Content Include="Views\Albums\OwnedAlbum.cshtml" />
+    <Content Include="Views\Invitations\Index.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Media\Item.cshtml" />
+    <Content Include="Views\Profile\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutNoUser.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Timeline\Item.cshtml" />
+    <Content Include="Views\User\Page.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <Content Include=".bowerrc" />
+    <Content Include="bower.json" />
+    <None Include="lib\blueimp-canvas-to-blob\.bower.json" />
+    <None Include="lib\blueimp-canvas-to-blob\bower.json" />
+    <None Include="lib\blueimp-file-upload\.bower.json" />
+    <None Include="lib\blueimp-file-upload\bower.json" />
+    <None Include="lib\blueimp-load-image\.bower.json" />
+    <None Include="lib\blueimp-load-image\bower.json" />
+    <None Include="lib\blueimp-tmpl\.bower.json" />
+    <None Include="lib\blueimp-tmpl\bower.json" />
+    <None Include="lib\bootstrap\.bower.json" />
+    <None Include="lib\bootstrap\bower.json" />
+    <None Include="lib\bootstrap\dist\css\bootstrap-theme.css.map" />
+    <None Include="lib\bootstrap\dist\css\bootstrap.css.map" />
+    <None Include="lib\bootstrap\dist\fonts\glyphicons-halflings-regular.eot" />
+    <None Include="lib\bootstrap\dist\fonts\glyphicons-halflings-regular.ttf" />
+    <None Include="lib\bootstrap\dist\fonts\glyphicons-halflings-regular.woff" />
+    <None Include="lib\bootstrap\dist\fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="lib\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <None Include="lib\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <None Include="lib\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <None Include="lib\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="lib\bootstrap\grunt\.jshintrc" />
+    <None Include="lib\bootstrap\grunt\configBridge.json" />
+    <None Include="lib\bootstrap\grunt\sauce_browsers.yml" />
+    <None Include="lib\bootstrap\js\.jscsrc" />
+    <None Include="lib\bootstrap\js\.jshintrc" />
+    <None Include="lib\bootstrap\less\.csscomb.json" />
+    <None Include="lib\bootstrap\less\.csslintrc" />
+    <None Include="lib\bootstrap\less\alerts.less" />
+    <None Include="lib\bootstrap\less\badges.less" />
+    <None Include="lib\bootstrap\less\bootstrap.less" />
+    <None Include="lib\bootstrap\less\breadcrumbs.less" />
+    <None Include="lib\bootstrap\less\button-groups.less" />
+    <None Include="lib\bootstrap\less\buttons.less" />
+    <None Include="lib\bootstrap\less\carousel.less" />
+    <None Include="lib\bootstrap\less\close.less" />
+    <None Include="lib\bootstrap\less\code.less" />
+    <None Include="lib\bootstrap\less\component-animations.less" />
+    <None Include="lib\bootstrap\less\dropdowns.less" />
+    <None Include="lib\bootstrap\less\forms.less" />
+    <None Include="lib\bootstrap\less\glyphicons.less" />
+    <None Include="lib\bootstrap\less\grid.less" />
+    <None Include="lib\bootstrap\less\input-groups.less" />
+    <None Include="lib\bootstrap\less\jumbotron.less" />
+    <None Include="lib\bootstrap\less\labels.less" />
+    <None Include="lib\bootstrap\less\list-group.less" />
+    <None Include="lib\bootstrap\less\media.less" />
+    <None Include="lib\bootstrap\less\mixins.less" />
+    <None Include="lib\bootstrap\less\mixins\alerts.less" />
+    <None Include="lib\bootstrap\less\mixins\background-variant.less" />
+    <None Include="lib\bootstrap\less\mixins\border-radius.less" />
+    <None Include="lib\bootstrap\less\mixins\buttons.less" />
+    <None Include="lib\bootstrap\less\mixins\center-block.less" />
+    <None Include="lib\bootstrap\less\mixins\clearfix.less" />
+    <None Include="lib\bootstrap\less\mixins\forms.less" />
+    <None Include="lib\bootstrap\less\mixins\gradients.less" />
+    <None Include="lib\bootstrap\less\mixins\grid-framework.less" />
+    <None Include="lib\bootstrap\less\mixins\grid.less" />
+    <None Include="lib\bootstrap\less\mixins\hide-text.less" />
+    <None Include="lib\bootstrap\less\mixins\image.less" />
+    <None Include="lib\bootstrap\less\mixins\labels.less" />
+    <None Include="lib\bootstrap\less\mixins\list-group.less" />
+    <None Include="lib\bootstrap\less\mixins\nav-divider.less" />
+    <None Include="lib\bootstrap\less\mixins\nav-vertical-align.less" />
+    <None Include="lib\bootstrap\less\mixins\opacity.less" />
+    <None Include="lib\bootstrap\less\mixins\pagination.less" />
+    <None Include="lib\bootstrap\less\mixins\panels.less" />
+    <None Include="lib\bootstrap\less\mixins\progress-bar.less" />
+    <None Include="lib\bootstrap\less\mixins\reset-filter.less" />
+    <None Include="lib\bootstrap\less\mixins\reset-text.less" />
+    <None Include="lib\bootstrap\less\mixins\resize.less" />
+    <None Include="lib\bootstrap\less\mixins\responsive-visibility.less" />
+    <None Include="lib\bootstrap\less\mixins\size.less" />
+    <None Include="lib\bootstrap\less\mixins\tab-focus.less" />
+    <None Include="lib\bootstrap\less\mixins\table-row.less" />
+    <None Include="lib\bootstrap\less\mixins\text-emphasis.less" />
+    <None Include="lib\bootstrap\less\mixins\text-overflow.less" />
+    <None Include="lib\bootstrap\less\mixins\vendor-prefixes.less" />
+    <None Include="lib\bootstrap\less\modals.less" />
+    <None Include="lib\bootstrap\less\navbar.less" />
+    <None Include="lib\bootstrap\less\navs.less" />
+    <None Include="lib\bootstrap\less\normalize.less" />
+    <None Include="lib\bootstrap\less\pager.less" />
+    <None Include="lib\bootstrap\less\pagination.less" />
+    <None Include="lib\bootstrap\less\panels.less" />
+    <None Include="lib\bootstrap\less\popovers.less" />
+    <None Include="lib\bootstrap\less\print.less" />
+    <None Include="lib\bootstrap\less\progress-bars.less" />
+    <None Include="lib\bootstrap\less\responsive-embed.less" />
+    <None Include="lib\bootstrap\less\responsive-utilities.less" />
+    <None Include="lib\bootstrap\less\scaffolding.less" />
+    <None Include="lib\bootstrap\less\tables.less" />
+    <None Include="lib\bootstrap\less\theme.less" />
+    <None Include="lib\bootstrap\less\thumbnails.less" />
+    <None Include="lib\bootstrap\less\tooltip.less" />
+    <None Include="lib\bootstrap\less\type.less" />
+    <None Include="lib\bootstrap\less\utilities.less" />
+    <None Include="lib\bootstrap\less\variables.less" />
+    <None Include="lib\bootstrap\less\wells.less" />
+    <None Include="lib\bootstrap\LICENSE" />
+    <None Include="lib\bootstrap\package.json" />
+    <None Include="lib\bootstrap\README.md" />
+    <None Include="lib\jquery-textcomplete\.bower.json" />
+    <None Include="lib\jquery-textcomplete\bower.json" />
+    <None Include="lib\jquery-textcomplete\CHANGELOG.md" />
+    <None Include="lib\jquery-textcomplete\dist\jquery.textcomplete.min.map" />
+    <None Include="lib\jquery-textcomplete\doc\events.md" />
+    <None Include="lib\jquery-textcomplete\doc\faq.md" />
+    <None Include="lib\jquery-textcomplete\doc\how_to_use.md" />
+    <None Include="lib\jquery-textcomplete\doc\README.md" />
+    <None Include="lib\jquery-textcomplete\doc\style.md" />
+    <None Include="lib\jquery-textcomplete\LICENSE" />
+    <None Include="lib\jquery-textcomplete\package.json" />
+    <None Include="lib\jquery-textcomplete\README.md" />
+    <None Include="lib\jquery-textcomplete\src\end.frag" />
+    <None Include="lib\jquery-textcomplete\src\start.frag" />
+    <None Include="lib\jquery-ui\.bower.json" />
+    <None Include="lib\jquery-ui\.gitignore" />
+    <None Include="lib\jquery-ui\bower.json" />
+    <None Include="lib\jquery-ui\component.json" />
+    <None Include="lib\jquery-ui\composer.json" />
+    <None Include="lib\jquery-ui\package.json" />
+    <None Include="lib\jquery-ui\README.md" />
+    <None Include="lib\jquery-ui\ui\.DS_Store" />
+    <None Include="lib\jquery-ui\ui\.jshintrc" />
+    <None Include="lib\jquery-validation-unobtrusive\.bower.json" />
+    <None Include="lib\jquery-validation-unobtrusive\bower.json" />
+    <None Include="lib\jquery-validation\.bower.json" />
+    <None Include="lib\jquery-validation\bower.json" />
+    <None Include="lib\jquery-validation\changelog.md" />
+    <None Include="lib\jquery-validation\CONTRIBUTING.md" />
+    <None Include="lib\jquery-validation\LICENSE.md" />
+    <None Include="lib\jquery-validation\package.json" />
+    <None Include="lib\jquery-validation\README.md" />
+    <None Include="lib\jquery-validation\validation.jquery.json" />
+    <None Include="lib\jquery.iframe-transport\.bower.json" />
+    <None Include="lib\jquery.iframe-transport\bower.json" />
+    <None Include="lib\jquery.iframe-transport\LICENSE" />
+    <None Include="lib\jquery.iframe-transport\package.json" />
+    <None Include="lib\jquery.iframe-transport\README.md" />
+    <None Include="lib\jquery\.bower.json" />
+    <None Include="lib\jquery\bower.json" />
+    <None Include="lib\jquery\dist\jquery.min.map" />
+    <None Include="lib\jquery\src\sizzle\dist\sizzle.min.map" />
+    <None Include="lib\respond\.bower.json" />
+    <None Include="lib\respond\bower.json" />
+    <None Include="lib\respond\LICENSE-MIT" />
+    <None Include="lib\respond\package.json" />
+    <None Include="lib\respond\README.md" />
+    <Content Include="package.json" />
+    <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Rg.ApiTypes\Rg.ApiTypes.csproj">
+      <Project>{5fbcd4ba-9406-4691-a052-9e4fea33b917}</Project>
+      <Name>Rg.ApiTypes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Rg.ServiceCore\Rg.ServiceCore.csproj">
+      <Project>{434172af-608f-47b1-8ab4-62ad246315c7}</Project>
+      <Name>Rg.ServiceCore</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>1086</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:31893/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

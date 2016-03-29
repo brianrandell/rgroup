@@ -1,0 +1,87 @@
+﻿@using Newtonsoft.Json
+@model Rg.Web.ViewModels.MediaViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div id="template-container"></div>
+
+@section scripts {
+
+    <script type="text/x-tmpl" id="tmpl-item">
+
+
+
+      <article class="row card timeline-item">
+
+    <header class="timeline-item-header text-right">
+      <img src="@Model.AvatarUrl" alt="@Model.FullName" class="avatar">
+      <h2>@Model.FullName <time datetime="{%=o.CreatedTimeAgo%}">{%=o.CreatedTimeAgo%}</time></h2>
+
+        <div class="likeContainer"></div>
+
+      <a href="#" class="btn btn-icon btn-like">Like this</a>
+      <a href="#" class="btn btn-icon btn-comment">Add comment</a>
+    </header>
+
+
+      <div class="timeline-item-content">
+
+          <img src="{%=o.MediaUrl%}" alt="{%=o.Title%}">
+
+          <strong>{%=o.Title%}</strong> {%#emojify(o.Description)%}
+
+      </div>
+
+
+            <footer class="timeline-comments-container">
+
+          <div class="timeline-comments">
+
+
+            <div class='comments'></div>
+
+
+        <div class="commentContainer"></div>
+        <div class="likeContainer"></div>
+
+          </div>
+
+      </footer>
+
+
+  </article>
+
+
+    </script>
+
+
+    <script type="text/javascript">
+        function renderItem(data) {
+            var c = $("#template-container");
+            c.html(tmpl("tmpl-item", data));
+            c.find(".likeContainer").each(function (i, likeContainer) {
+                makeLikeable("@Model.UserId", likeContainer, data, reloadItem);
+            });
+            c.find(".commentContainer").each(function (i, commentContainer) {
+                makeCommentTarget("@Model.UserId", "@Model.AvatarUrl", commentContainer, data, reloadItem);
+            });
+        }
+        function reloadItem() {
+            $.ajax
+            ({
+                type: "GET",
+                url: '/api/Meda/@Model.Detail.Id'
+            }).done(function (data) {
+                renderItem(data);
+            });
+        }
+
+        var initialItem = @Html.Raw(JsonConvert.SerializeObject(Model.Detail));
+        $(document).ready(function () {
+            renderItem(initialItem);
+        });
+
+    </script>
+}

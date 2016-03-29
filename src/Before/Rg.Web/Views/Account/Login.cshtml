@@ -1,0 +1,15 @@
+﻿@using Rg.Web.Models
+@{
+    ViewBag.Title = "Log in";
+    Layout = "~/Views/Shared/_LayoutNoUser.cshtml";
+}
+
+<h2 class="page-subtitle">@ViewBag.Title</h2>
+
+<div class="row card">
+
+  <section id="socialLoginForm">
+      @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+  </section>
+
+</div>

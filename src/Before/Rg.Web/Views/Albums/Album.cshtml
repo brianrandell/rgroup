@@ -1,0 +1,93 @@
+﻿@model Rg.Web.ViewModels.AlbumViewModel
+@using Newtonsoft.Json
+
+@{
+    ViewBag.Title = Model.PosessiveInformalName + " " + Model.Detail.Title + "Album";
+}
+
+<h2 class="page-subtitle">@Model.PosessiveInformalName ‘@Model.Detail.Title’ Album</h2>
+
+
+  <article class="row card timeline-item">
+    <div class="col-md-4">
+        <div><span>Title:</span><span id="titleText">@Model.Detail.Title</span></div>
+        <div><span>Description:</span><span id="descriptionText"></span></div>
+    </div>
+    <div id="likeAlbum" class="likeContainer"></div>
+    <div id="commentAlbum" class="commentContainer"></div>
+</div>
+
+<div class="row">
+    <button id="refresh">Refresh</button>
+</div>
+
+    <div id="item-list"></div>
+
+
+@section scripts {
+<script type="text/x-tmpl" id="tmpl-item">
+    {% for (var i=0; i < o.length; i++) { %}
+  <article class="row card timeline-item">
+    <header class="timeline-item-header text-right">
+      <img src="@Model.AvatarUrl" alt="@Model.FullName" class="avatar">
+      <h2>@Model.FullName <time datetime="{%=o[i].CreatedTimeAgo%}">{%=o[i].CreatedTimeAgo%}</time></h2>
+
+      <div class="likeContainer"></div>
+
+      <a href="#" class="btn btn-icon btn-like">Like this</a>
+      <a href="#" class="btn btn-icon btn-comment">Add comment</a>
+    </header>
+
+
+      <div class="timeline-item-content">
+        <div class="timeline-item-content-message">
+          <p><strong>{%=o[i].Title%}</strong> {%#emojify(o[i].Description)%}</p>
+        </div>
+      </div>
+
+      <img src="{%=o[i].MediaUrl%}" />
+
+</article>
+    {% } %}
+</script>
+
+<script type="text/javascript">
+    function renderAlbum(data) {
+        $('#titleText').text(data.Title);
+        $('#descriptionText').html(emojify(data.Description));
+        makeLikeable("@Model.UserId", $("#likeAlbum"), data, reloadAlbum);
+        makeCommentTarget("@Model.UserId", "@Model.AvatarUrl", $('#commentAlbum'), data, reloadAlbum);
+    }
+    function renderItems(data) {
+        var c = $("#item-list");
+        c.html(tmpl("tmpl-item", data));
+        c.find(".likeContainer").each(function (i, likeContainer) {
+            makeLikeable("@Model.UserId", likeContainer, data[i], reloadAlbum);
+        });
+        c.find(".commentContainer").each(function (i, commentContainer) {
+            makeCommentTarget("@Model.UserId", "@Model.AvatarUrl", commentContainer, data[i], reloadAlbum);
+        });
+    }
+
+    var albumUrl = "/api/Albums/@Model.AlbumId";
+    function reloadAlbum() {
+        $.ajax
+        ({
+            type: "GET",
+            url: albumUrl
+        }).done(function (data) {
+            renderAlbum(data);
+            renderItems(data.Items);
+        });
+    }
+    var initialAlbumDetail = @Html.Raw(JsonConvert.SerializeObject(Model.Detail));
+
+    renderAlbum(initialAlbumDetail);
+    $(document).ready(function () {
+        renderItems(initialAlbumDetail.Items);
+
+        $('#refresh').click(function () {
+            reloadAlbum();
+        });
+    });</script>
+}

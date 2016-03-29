@@ -1,0 +1,281 @@
+﻿@model Rg.Web.ViewModels.AlbumViewModel
+@using Newtonsoft.Json
+
+@{
+    ViewBag.Title = Model.Detail.Title + "Album";
+}
+
+<h2 class="page-subtitle">‘@Model.Detail.Title’ Owned Album</h2>
+
+
+  <div class="row card status-updater">
+
+    <input id="titleText" type="text" placeholder="Name">
+
+    <textarea id="descriptionText" placeholder="Description"></textarea>
+
+  <div class="row status-updater-actions">
+
+    <div class="col-sm-8 update-buttons">
+
+      <span class="btn btn-file btn-add-photo" tabindex="2">
+          Add picture(s)
+          <!-- The file input field used as target for the file upload widget -->
+          <input id="fileupload" type="file" name="files[]" multiple>
+      </span>
+
+      <span class="btn btn-file btn-add-video" tabindex="3">
+          Add video
+          <!-- The file input field used as target for the file upload widget -->
+          <input id="fileupload" type="file" name="files[]" multiple>
+      </span>
+
+      <a class="btn btn-mention" href="#" tabindex="4">
+        Mention someone
+      </a>
+
+    </div>
+
+
+    <div class="col-sm-4 update-preview-post">
+
+      <input type="button" class="btn" value="Preview" onclick="previewEmoji('descriptionText', 'outputText')">
+
+      <input type="button" class="btn" id="updateAlbum" value="Update albun">
+
+    </div>
+
+  </div>
+
+
+  <div class="status-updater-info">
+
+      <p id="outputText" class="output-text"></p>
+
+      <!-- The global progress bar -->
+      <div id="progress" class="progress">
+          <div class="progress-bar progress-bar-success"></div>
+      </div>
+
+  </div>
+
+  </div>
+
+
+
+  <div class="row card file-dropzone">
+
+       <div class="row files upload-grid" id="files">
+       </div>
+
+    </div>
+
+
+
+    <div id="item-list"></div>
+
+
+@section scripts {
+    <script type="text/x-tmpl" id="tmpl-upload">
+
+  <div class="row card status-updater">
+
+    <input class="titleText" type="text" placeholder="Name">
+
+    <textarea class="descriptionText" placeholder="Description"></textarea>
+
+
+  <div class="row status-updater-actions">
+
+    <div class="col-sm-8 update-buttons">
+    </div>
+
+
+    <div class="col-sm-4 update-preview-post">
+
+      <input type="button" class="btn previewButton" value="Preview">
+
+      <input type="button" class="btn addToAlbum" id="updateAlbum" value="Update albun">
+
+    </div>
+
+
+    <div class="status-updater-info">
+
+        <p id="outputText" class="output-text"></p>
+
+        <!-- The global progress bar -->
+        <div id="progress" class="progress">
+            <div class="progress-bar progress-bar-success"></div>
+        </div>
+
+    </div>
+
+    </div>
+
+
+    </script>
+
+    <script type="text/x-tmpl" id="tmpl-item">
+  {% for (var i=0; i < o.length; i++) { %}
+  <article class="row card timeline-item">
+    <header class="timeline-item-header text-right">
+      <img src="@Model.AvatarUrl" alt="@Model.FullName" class="avatar">
+      <h2>@Model.FullName <time datetime="{%=o[i].CreatedTimeAgo%}">{%=o[i].CreatedTimeAgo%}</time></h2>
+
+      <div class="likeContainer"></div>
+
+      <a href="#" class="btn btn-icon btn-like">Like this</a>
+      <a href="#" class="btn btn-icon btn-comment">Add comment</a>
+    </header>
+
+      <div class="timeline-item-content">
+        <div class="timeline-item-content-message">
+          <p><strong>{%=o[i].Title%}</strong> {%#emojify(o[i].Description)%}</p>
+        </div>
+      </div>
+
+        <img src="{%=o[i].MediaUrl%}" />
+
+  </article>
+  {% } %}
+</script>
+
+<script src="~/Scripts/upload.min.js"></script>
+
+    <script type="text/javascript">
+        function renderAlbum(data) {
+            $('#titleText').val(data.Title);
+            $('#descriptionText').val(data.Description);
+            makeLikeable("@Model.UserId", $("#likeAlbum"), data, reloadAlbum);
+            makeCommentTarget("@Model.UserId", "@Model.AvatarUrl", $('#commentAlbum'), data, reloadAlbum);
+        }
+        function renderItems(data) {
+            var c = $("#item-list");
+            c.html(tmpl("tmpl-item", data));
+            c.find(".likeContainer").each(function (i, likeContainer) {
+                makeLikeable("@Model.UserId", likeContainer, data[i], reloadAlbum);
+            });
+            c.find(".commentContainer").each(function (i, commentContainer) {
+                makeCommentTarget("@Model.UserId", "@Model.AvatarUrl", commentContainer, data[i], reloadAlbum);
+            });
+        }
+
+        var albumUrl = "/api/Albums/@Model.AlbumId";
+        function reloadAlbum() {
+            $.ajax
+            ({
+                type: "GET",
+                url: albumUrl
+            }).done(function (data) {
+                renderAlbum(data);
+                renderItems(data.Items);
+            });
+        }
+
+        var initialAlbumDetail = @Html.Raw(JsonConvert.SerializeObject(Model.Detail));
+        renderAlbum(initialAlbumDetail);
+
+        $(function () {
+            'use strict';
+            $('#fileupload').fileupload(
+                {
+                    url: '/api/UploadMedia',
+                    dropZone: $('body'),
+                    acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+                    maxFileSize: 999000
+                }).on('fileuploadprocessalways', function (e, data) {
+                    var index = data.index,
+                        file = data.files[index],
+                        node = $(data.context.children()[index]);
+                    if (file.preview) {
+                        node
+                            .prepend('<br>')
+                            .prepend(file.preview);
+                    }
+                    if (file.error) {
+                        node
+                            .append('<br>')
+                            .append($('<span class="text-danger"/>').text(file.error));
+                    }
+                }).on('fileuploadadd', function (e, data) {
+                    data.context = $('<div/>').appendTo('#files');
+                    $.each(data.files, function (index, file) {
+                        var node = $('<p/>')
+                                .append($('<span/>').text(file.name));
+                        node.appendTo(data.context);
+                    });
+                }).on('fileuploadprogressall', function (e, data) {
+                    var progress = parseInt(data.loaded / data.total * 100, 10);
+                    $('#progress .progress-bar').css(
+                        'width',
+                        progress + '%'
+                    );
+                }).on('fileuploaddone', function (e, data) {
+                    // data.context seems to refer to the <div> for this entry.
+                    //  (how does that square with the possibility of multiple file uploads?
+                    //   well as far as I can see it uploads one at a time even if you drag several)
+                    // data.files contains the files uploaded in this particular upload.
+                    // data.result contains the response from the server
+                    var id = data.result.Files[0].Id;
+
+                    var uploadAndEdit = $(tmpl("tmpl-upload", { }));
+                    var r = uploadAndEdit.appendTo(data.context);
+                    //var node = $('<div/>');
+                    //node.innerHtml = uploadAndEdit;
+                    //var r = node.appendTo(data.context);
+                    var titleText = r.find(".titleText");
+                    var descriptionText = r.find(".descriptionText");
+                    var previewButton = r.find(".previewButton");
+                    var imageOutputText = r.find(".output-text");
+                    var addToAlbum = r.find(".addToAlbum");
+                    enableEditAutoCompletion(descriptionText);
+                    previewButton.click(function () {
+                        previewEmojiElem(descriptionText, imageOutputText);
+                    });
+                    addToAlbum.click(function() {
+                        var name = titleText.val();
+                        var description = descriptionText.val();
+                        var json = JSON.stringify({ "Title": name, "Description": description, "MediaId": id });
+                        $.ajax
+                        ({
+                            type: "POST",
+                            url: albumUrl + "/AddImage",
+                            contentType: 'application/json',
+                            data: json,
+                            success: function () {
+                                data.context.remove();
+                                reloadAlbum();
+                            }
+                        });
+                    });
+                });
+        });
+
+        $(document).ready(function () {
+            renderItems(initialAlbumDetail.Items);
+
+            enableEditAutoCompletion($("#descriptionText"));
+
+            $('#updateAlbum').click(function () {
+                var name = titleText.value;
+                var description = descriptionText.value;
+                var json = JSON.stringify({ "Title": name, "Description": description });
+                $.ajax
+                ({
+                    type: "PUT",
+                    url: albumUrl,
+                    contentType: 'application/json',
+                    data: json,
+                    success: function () {
+                        reloadAlbum();
+                    }
+                });
+            });
+
+            $('#refresh').click(function () {
+                reloadAlbum();
+            });
+        });
+    </script>
+}

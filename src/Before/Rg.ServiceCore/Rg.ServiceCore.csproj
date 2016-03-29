@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{434172AF-608F-47B1-8AB4-62AD246315C7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Rg.ServiceCore</RootNamespace>
+    <AssemblyName>Rg.ServiceCore</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DbModel\ApplicationDbContext.cs" />
+    <Compile Include="DbModel\Comment.cs" />
+    <Compile Include="DbModel\CommentThread.cs" />
+    <Compile Include="DbModel\Invitation.cs" />
+    <Compile Include="DbModel\Like.cs" />
+    <Compile Include="DbModel\LikeKind.cs" />
+    <Compile Include="DbModel\MediaAlbum.cs" />
+    <Compile Include="DbModel\NotifyOptions.cs" />
+    <Compile Include="DbModel\PushTriggerRegistration.cs" />
+    <Compile Include="DbModel\TimeLineEntry.cs" />
+    <Compile Include="DbModel\TimelineEntryMedia.cs" />
+    <Compile Include="DbModel\TriggerType.cs" />
+    <Compile Include="DbModel\UserInfo.cs" />
+    <Compile Include="DbModel\UserMedia.cs" />
+    <Compile Include="DbModel\UserMediaData.cs" />
+    <Compile Include="DbModel\UserMediaState.cs" />
+    <Compile Include="DbModel\UserText.cs" />
+    <Compile Include="Operations\AlbumOperations.cs" />
+    <Compile Include="Operations\CommentItemIds.cs" />
+    <Compile Include="Operations\CommentOperations.cs" />
+    <Compile Include="Operations\InvitationOperations.cs" />
+    <Compile Include="Operations\LikeOperations.cs" />
+    <Compile Include="Operations\NotificationOperations.cs" />
+    <Compile Include="Operations\SearchOperations.cs" />
+    <Compile Include="Operations\TextOperations.cs" />
+    <Compile Include="Operations\TimelineOperations.cs" />
+    <Compile Include="Operations\TimeOperations.cs" />
+    <Compile Include="Operations\UserMediaOperations.cs" />
+    <Compile Include="Operations\UserOperations.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Rg.ApiTypes\Rg.ApiTypes.csproj">
+      <Project>{5fbcd4ba-9406-4691-a052-9e4fea33b917}</Project>
+      <Name>Rg.ApiTypes</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

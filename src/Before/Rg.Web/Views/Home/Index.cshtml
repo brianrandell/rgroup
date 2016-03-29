@@ -1,0 +1,235 @@
+﻿@using Newtonsoft.Json
+@model Rg.Web.ViewModels.HomeViewModel
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+
+
+
+  <div class="row card status-updater">
+
+    <textarea id="inputText" placeholder="What&rsquo;s on your mind?" tabindex="1"></textarea>
+
+  <div class="row status-updater-actions">
+
+    <div class="col-sm-8 update-buttons">
+
+      <span class="btn btn-file btn-add-photo" tabindex="2">
+          Add picture(s)
+          <!-- The file input field used as target for the file upload widget -->
+          <input id="fileupload" type="file" name="files[]" multiple>
+      </span>
+
+      <span class="btn btn-file btn-add-video" tabindex="3">
+          Add video
+          <!-- The file input field used as target for the file upload widget -->
+          <input id="fileupload" type="file" name="files[]" multiple>
+      </span>
+
+      <a class="btn btn-mention" href="#" tabindex="4">
+        Mention someone
+      </a>
+
+    </div>
+
+
+    <div class="col-sm-4 update-preview-post">
+
+      <input type="button" class="btn" value="Preview" onclick="previewEmoji('inputText', 'outputText')" tabindex="5">
+
+      <input type="button" class="btn" id="postMessage" value="Post" tabindex="6">
+
+    </div>
+
+  </div>
+
+
+  <div class="status-updater-info">
+
+      <p id="outputText" class="output-text"></p>
+
+      <!-- The global progress bar -->
+      <div id="progress" class="progress">
+          <div class="progress-bar" role="progressbar"></div>
+      </div>
+
+  </div>
+
+  </div>
+
+
+
+<div class="row card file-dropzone">
+
+    <!-- The container for the uploaded files
+    <div class="files" id="files"><div><p><canvas width="80" height="60"><img src="Images/DefaultBanner.jpg" alt="DefaultBanner" width="80" height="60"></canvas><br><span>1273202_470085839775318_1873673422_o.jpg</span></p><span><span>done</span></span></div></div>-->
+
+     <div class="row files upload-grid" id="files">
+     </div>
+
+  </div>
+
+
+
+<div id="template-container"></div>
+
+
+@section scripts {
+
+<script type="text/x-tmpl" id="tmpl-timelineentry">
+    {% for (var i=0; i < o.length; i++) { %}
+
+
+  <article class="row card timeline-item">
+
+    <header class="timeline-item-header text-right">
+      <img src="{%=o[i].AvatarUrl%}" alt="{%=o[i].UserName%}" class="avatar">
+      <h2>{%=o[i].UserName%} <time datetime="{%=o[i].DateTime%}">{%=o[i].DateTime%}</time></h2>
+
+        <div class="likeContainer"></div>
+
+      <a href="#" class="btn btn-icon btn-like">Like this</a>
+      <a href="#" class="btn btn-icon btn-comment">Add comment</a>
+    </header>
+
+
+      <div class="timeline-item-content">
+
+          <div class="timeline-item-content-message">{%#emojify(o[i].Message)%}</div>
+
+          <div class="album-grid">
+              {% if (o[i].hasOwnProperty("MediaUrls")) { %}
+              {% for (var m = 0; m < o[i].MediaUrls.length; ++m) { %}
+              <img src="{%=o[i].MediaUrls[m]%}" alt="" />
+              {%   }
+              } %}
+          </div>
+      </div>
+
+
+            <footer class="timeline-comments-container">
+
+          <div class="timeline-comments">
+
+
+            <div class='comments'></div>
+
+
+        <div class="commentContainer"></div>
+
+          </div>
+
+      </footer>
+
+
+  </article>
+
+    {% } %}
+</script>
+
+
+<script src="~/Scripts/upload.min.js"></script>
+
+<script type="text/x-tmpl" id="tmpl-uploadedfile">
+    <figure class="uploaded-thumbnail">
+
+        <div class="preview-placeholder"></div>
+
+        <figcaption class="uploaded-thumbnail-caption">{%=o.name%}</figcaption>
+
+    </figure>
+</script>
+
+    <script type="text/javascript">
+        function renderTimeline(data) {
+            var c = $("#template-container");
+            c.html(tmpl("tmpl-timelineentry", data));
+            c.find(".likeContainer").each(function (i, likeContainer) {
+                makeLikeable("@Model.UserId", likeContainer, data[i], reloadTimeline);
+            });
+            c.find(".commentContainer").each(function (i, commentContainer) {
+                makeCommentTarget("@Model.UserId", "@Model.AvatarUrl", commentContainer, data[i], reloadTimeline);
+            });
+        }
+
+        function reloadTimeline() {
+            $.ajax
+            ({
+                type: "GET",
+                url: '/api/Timeline'
+            }).done(function (data) {
+                renderTimeline(data);
+            });
+        }
+
+        var initialTimeline = @Html.Raw(JsonConvert.SerializeObject(Model.TimelineEntries));
+        var imageIdsForPost = [];
+
+
+        $(function () {
+            'use strict';
+            $('#fileupload').fileupload(
+                {
+                    url: '/api/UploadMedia',
+                    dropZone: $('body'),
+                    acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+                    maxFileSize: 999000
+                }).on('fileuploadprocessalways', function (e, data) {
+                    var file = data.files[0],
+                        node = $(data.context);
+                    if (file.preview) {
+                        var ph = node.find(".preview-placeholder");
+                        ph.append(file.preview);
+                    }
+                    if (file.error) {
+                        node
+                            .append('<br>')
+                            .append($('<span class="text-danger"/>').text(file.error));
+                    }
+                }).on('fileuploadadd', function (e, data) {
+                    // We seem only ever to get one.
+                    var node = $(tmpl("tmpl-uploadedfile", data.files[0]));
+                    data.context = node;
+                    node.appendTo('#files');
+                }).on('fileuploadprogressall', function (e, data) {
+                    var progress = parseInt(data.loaded / data.total * 100, 10);
+                    $('#progress .progress-bar').css(
+                        'width',
+                        progress + '%'
+                    );
+                }).on('fileuploaddone', function (e, data) {
+                    imageIdsForPost.push(data.result.Files[0].Id);
+                });
+        });
+
+
+        $(document).ready(function () {
+            renderTimeline(initialTimeline);
+
+            enableEditAutoCompletion($("#inputText"));
+
+            $('#postMessage').click(function () {
+                var message = document.getElementById('inputText').value;
+                var json = JSON.stringify({ "Message": message, "MediaIds": imageIdsForPost });
+                $.ajax
+                ({
+                    type: "POST",
+                    //the url where you want to sent the userName and password to
+                    url: '/api/Timeline',
+                    contentType: 'application/json',
+                    //json object to sent to the authentication url
+                    data: json,
+                    success: function () {
+                        imageIdsForPost = [];
+                        $('#files').empty();
+                        document.getElementById('inputText').value = "";
+                        reloadTimeline();
+                    }
+                });
+            });
+        });
+    </script>
+}
