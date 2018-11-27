@@ -3,7 +3,7 @@
 
 The source files here support the Azure Developer Immersion that was run in late 2015 and early 2015 by Microsoft as part of the Microsoft Azure Tour. The content was created by MCW Technologies for Microsoft.
 
-You can find all the docs in PDF format at [the rGroup site](http://rgroup.us).
+You can find all the docs in PDF format at in the PDF folder (adding soon).
 
 The files here are available there in a ZIP file or you can pull from this GitHub repo and provide feedback if you like.
 
